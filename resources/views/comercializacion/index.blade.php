@@ -297,6 +297,7 @@ resultado.innerText = "RFC: " + rfc
 		new Vue({
 			el: '#crud',
 			created: function(){
+				this.showDelegaciones();
 			},
 
 			data:{
@@ -410,6 +411,9 @@ resultado.innerText = "RFC: " + rfc
 							$('#crearCliente').modal('toggle');
                         }).catch(error=>{
                         });
+				},
+				showDelegaciones:function(){
+					alert("Delegaciones");
 				},
 				addServicio:function(id){
 					this.nuevoServicio.id_cliente=id;
