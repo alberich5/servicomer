@@ -64,7 +64,7 @@
 					    <span class="glyphicon glyphicon-plus"></span></span>
 					</button>
 					    
-					<label>Modalidad Solicitada</label></center><hr><br>
+					<label>Modalidad del Servicio</label></center><hr><br>
 
 				<table id="t1" class="table table-condensed">
 					<tr>

@@ -413,7 +413,7 @@ resultado.innerText = "RFC: " + rfc
                         });
 				},
 				showDelegaciones:function(){
-					alert("Delegaciones");
+					
 				},
 				addServicio:function(id){
 					this.nuevoServicio.id_cliente=id;
