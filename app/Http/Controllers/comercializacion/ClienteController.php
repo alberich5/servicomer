@@ -146,6 +146,7 @@ class ClienteController extends Controller
             $cliente->fecha_alta=$request['cliente']['fecha'];
             $cliente->nombre_comercial=$request['cliente']['nombre_comercial'];
             $cliente->rfc=$request['cliente']['rfc'];
+            $cliente->rfc=$request['cliente']['cargo'];
             $cliente->save();
 
             $informacion['resultado']='El registro del cliente '.$cliente->razon_social.' fue exitoso';

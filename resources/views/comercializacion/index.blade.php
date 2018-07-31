@@ -302,7 +302,7 @@ resultado.innerText = "RFC: " + rfc
 
 			data:{
 				searchCliente:{id:'',razon_social:'',nombre_comercial:'',fecha:''},
-				nuevoCliente:{num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',domicilio_fiscal:'',domicilio_fiscal:'',rfc:''},
+				nuevoCliente:{num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',domicilio_fiscal:'',domicilio_fiscal:'',rfc:'',cargo:''},
 				nuevoElemento:{id:'',tipo:'',cantidad:'',tipo_turno:'',horario:''},
 				nuevoContacto:{id:'',nombre:'',tipo:'',dato:''},
 				clientes:[],

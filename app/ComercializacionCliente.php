@@ -20,6 +20,7 @@ class ComercializacionCliente extends Model
       'fecha_alta',
       'nombre_comercial',
       'activo',
-      'rfc'
+      'rfc',
+      'cargo'
     ];
 }

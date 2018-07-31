@@ -19,6 +19,9 @@
 				<label for="registro">RFC</label>
 				<input type=text class="form-control" id="rfc_input" oninput="validarInput(this)" v-model="nuevoCliente.rfc">
 				<pre id="resultado"></pre>
+				<!---cargo-->
+				<label for="registro">Cargo</label>
+				<input type="text" class="form-control" v-model="nuevoCliente.cargo">
 
 				<!---nombre comercial-->
 				<label for="registro">Nombre Comercial</label>
