@@ -97,7 +97,7 @@ Route::get('/admin/usuario/sucursales', 'admin\UsuarioController@getSucursales')
 	Route::post('/users/store',['uses'=> 'admin\UserController@store', 'as'=> 'users.store'])->middleware('permission:users.store');
 Route::get('usuario/registrar', 'admin\UserController@create')->name('usuario.registrar')
 		->middleware('permission:usuario.registrar');
-		
+
 Route::post('/recursos/elemento/show',['uses'=> 'recursosHumanos\ElementoPolicialController@show', 'as'=> 'recursos.elemento.show'])->middleware('permission:recursos.elemento.show');
 
 
@@ -119,6 +119,11 @@ Route::post('comercializacion/servicio/show',['uses'=> 'comercializacion\Servici
 
 
 Route::post('comercializacion/servicio/store',['uses'=> 'comercializacion\ServicioController@store', 'as'=> 'comercializacion.servicio.store']);
+
+
+
+
+Route::get('prueba',['uses'=> 'comercializacion\ServicioController@prueba', 'as'=> 'comercializacion.servicio.store']);
 
 
 

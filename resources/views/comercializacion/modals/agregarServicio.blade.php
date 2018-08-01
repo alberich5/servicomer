@@ -20,11 +20,26 @@
 				<label>Municipio del Servicio</label><br>
 				<td><input type="text" class="form-control" v-model="nuevoServicio.municipio"></td><br>
 
+				<label for="">Delegacion</label>
+				<select class="form-control" v-model="nuevoServicio.id_delegacion">
+                        <option v-for="de in delegaciones" v-bind:value="de.id" class="lista">
+                          @{{ de.nombre}}
+                        </option>
+        </select>
+
 				<label>Giro</label><br>
-				<td><input type="text" class="form-control" v-model="nuevoServicio.giro"></td><br>
+				<select class="form-control" v-model="nuevoServicio.giro">
+                        <option v-for="giro in giros" v-bind:value="giro.nombre" class="lista">
+                          @{{ giro.nombre}}
+                        </option>
+        </select>
 
 				<label>Nivel Riesgo</label><br>
-				<td><input type="text" class="form-control" v-model="nuevoServicio.riesgo"></td><br>
+				<select class="form-control" v-model="nuevoCliente.riesgo">
+                        <option v-for="nivel in nivelRiesgo" v-bind:value="nivel.nombre" class="lista">
+                          @{{ nivel.nombre}}
+                        </option>
+				</select>
 
 
 				<label>Fecha contratación Inicial</label><br>

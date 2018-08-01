@@ -203,12 +203,12 @@
     </div>
 
 
-	<!--<div class="col-sm-12">
+	<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
 		</pre>
-	</div>-->
+	</div>
 
 	@include('comercializacion.modals.crearCliente')
 	@include('comercializacion.modals.agregarServicio')
@@ -306,7 +306,7 @@ resultado.innerText = "RFC: " + rfc
 				nuevoElemento:{id:'',tipo:'',cantidad:'',tipo_turno:'',horario:''},
 				nuevoContacto:{id:'',nombre:'',tipo:'',dato:''},
 				clientes:[],
-				nuevoServicio:{nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
+				nuevoServicio:{nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
 				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
 				mostrarClienteHistorial:[],
 				mostrarServicio:{},
@@ -320,6 +320,10 @@ resultado.innerText = "RFC: " + rfc
 							{id:'2', nombre:'ESTATAL'},
 							{id:'2', nombre:'FEDERAL'},
 							{id:'2', nombre:'MUNICIPAL'},
+				],
+				nivelRiesgo:[{id:'1', nombre:'ALTO'},
+							{id:'2', nombre:'MEDIO'},
+							{id:'3', nombre:'BAJO'},
 				],
 				giros:[{id:'1', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR MES'},
 												{id:'2', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 15 DIAS'},
