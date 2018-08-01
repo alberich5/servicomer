@@ -21,6 +21,9 @@
 				<label>Razon social:</label>
 				<label v-text="mostrarCliente.razon_social"></label>
 				<br>
+				<label>Nombre comercial:</label>
+				<label v-text="mostrarCliente.nombre_comercial"></label>
+				<br>
 				<label>Domicilio de Notificaciones:</label>
 				<label v-text="mostrarCliente.domicilio_notificacion"></label>
 				<br>
@@ -31,9 +34,7 @@
 				<label v-text="mostrarCliente.domicilio_fiscal"></label>
 				<br>
 
-				<label>Nombre comercial:</label>
-				<label v-text="mostrarCliente.nombre_comercial"></label>
-				<br>
+
 				<label>Estatus:</label>
 				<span class="label label-danger" v-show="mostrarCliente.estatus==false" >INACTIVO</span>
 

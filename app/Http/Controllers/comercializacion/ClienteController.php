@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ComercializacionCliente;
 use App\ComercializacionServicio;
+use App\RepresentanteLegal;
 
 
 class ClienteController extends Controller
@@ -141,6 +142,12 @@ class ClienteController extends Controller
 
 
         try{
+          //Aqui se guarda el representante legal
+            $repLegal=new RepresentanteLegal;
+            $repLegal->nombre=$request['cliente']['replegal'];
+            $repLegal->tipo="Cliente";
+            $repLegal->save();
+            //Aqui se guarda el cliente
             $cliente=new ComercializacionCliente;
             $cliente->razon_social=$request['cliente']['razon_social'];
             $cliente->domicilio_fiscal=$request['cliente']['domicilio_fiscal'];
@@ -153,6 +160,8 @@ class ClienteController extends Controller
             $cliente->id_delegacion=$request['cliente']['id_delegacion'];
             $cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
             $cliente->save();
+
+
             $informacion['resultado']='El registro del cliente '.$cliente->razon_social.' fue exitoso';
         }
         catch(\Exception $e) {

@@ -12,6 +12,7 @@ class RepresentanteLegal extends Model
   protected $primaryKey='id';
 
   protected $fillable =[
-    'nombre'
+    'nombre',
+    'tipo'
   ];
 }

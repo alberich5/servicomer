@@ -44,6 +44,10 @@
                         </option>
         		</select>
 				<!---fecha alta-->
+				<label for="registro">Representante legal</label>
+				<input type="text" class="form-control" v-model="nuevoCliente.replegal">
+
+				<!---fecha alta-->
 				<label for="registro">Fecha Alta</label>
 				<input type="date" class="form-control" v-model="nuevoCliente.fecha">
 				<br>
