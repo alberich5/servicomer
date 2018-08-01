@@ -147,6 +147,7 @@ class ClienteController extends Controller
             $repLegal->nombre=$request['cliente']['replegal'];
             $repLegal->tipo="Cliente";
             $repLegal->save();
+            $ultimorep = RepresentanteLegal::orderBy('id', 'desc')->first();
             //Aqui se guarda el cliente
             $cliente=new ComercializacionCliente;
             $cliente->razon_social=$request['cliente']['razon_social'];
@@ -159,6 +160,7 @@ class ClienteController extends Controller
             $cliente->domicilio_notificacion=$request['cliente']['notificacion'];
             $cliente->id_delegacion=$request['cliente']['id_delegacion'];
             $cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
+            $cliente->id_representante_legal=$ultimorep->id;
             $cliente->save();
 
 
