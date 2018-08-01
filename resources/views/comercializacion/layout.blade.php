@@ -42,11 +42,32 @@
       
       <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Perfil</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Salir </a></li>
-          </ul>
+
+        @if (Auth::guest())
+               <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
+                           
+                 @else
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    {{ Auth::user()->username }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                    <li>
+                    <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    <span class="glyphicon glyphicon-log-in"></span>   Cerrar sesión
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                    </form>
+                    </li>
+                    </ul>
+                    </li>
+                  @endif
+
         </li>
         </ul>
       
@@ -62,9 +83,9 @@
 
   
     <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 

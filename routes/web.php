@@ -122,6 +122,14 @@ Route::post('comercializacion/servicio/store',['uses'=> 'comercializacion\Servic
 
 
 
+
+
+
+
+
+
+
+
 		//->middleware('permission:usuario.registrar');
 
 });//fin route auth

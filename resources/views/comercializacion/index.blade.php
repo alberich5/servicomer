@@ -19,13 +19,13 @@
 
 		 <div class="panel-body">
 		     <div class="col-sm-5">
-		    
+
 
 			   <div class="form-group">
 			      <label for="texto">ID:</label>
 			      <input type="text" class="form-control" placeholder="ID" v-model="searchCliente.id" >
 			   </div>
-			   
+
 			   <div class="form-group">
 			      <label for="t2">Razon Social:</label>
 			      <input type="text" class="form-control" placeholder="Razon Social" v-model="searchCliente.razon_social">
@@ -39,14 +39,14 @@
 			      <label for="fecha">Fecha Alta:</label>
 			      <input type="date" class="form-control" placeholder="" v-model="searchCliente.fecha">
 			   </div>
-		 	
+
 
 		   </div>
 		 </div>
 
       <div class="panel-footer">
 
-		
+
       	<button type="submit" class="btn btn-sm btn-default">
          <span class="glyphicon glyphicon-search"></span> Buscar
         </button>
@@ -55,7 +55,7 @@
       	<span class="glyphicon glyphicon-erase"></span>
       	Limpiar
       	</button>
-      	
+
       </div>
     </div>
 </form>
@@ -73,20 +73,20 @@
       	<center>RESULTADOS</center></div>
       <div class="panel-body">
 
-      
+
 
 <!-- LISTADO -->
 
       	<div class="col-sm-12">
       		<div class="panel panel-primary">
       		<div class="panel-heading col-sm-12">
-      			
+
       			Listado obtenido
       		</div>
 
       		<div class="panel-body">
 
-      			<div class="col-sm-12">				
+      			<div class="col-sm-12">
 				<table class="table table-bordered table-hover"  id="myTable">
 				<thead>
 					<tr>
@@ -202,13 +202,13 @@
       </div>
     </div>
 
-    
-	<div class="col-sm-12">
+
+	<!--<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
 		</pre>
-	</div>
+	</div>-->
 
 	@include('comercializacion.modals.crearCliente')
 	@include('comercializacion.modals.agregarServicio')
@@ -220,11 +220,11 @@
 	@include('comercializacion.modals.editarCliente')
 	@include('comercializacion.modals.agregarArchivosCliente')
 
-	
-	
 
-	
-	
+
+
+
+
 </div>
 
 @endsection
@@ -302,23 +302,38 @@ resultado.innerText = "RFC: " + rfc
 
 			data:{
 				searchCliente:{id:'',razon_social:'',nombre_comercial:'',fecha:''},
-				nuevoCliente:{num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',domicilio_fiscal:'',domicilio_fiscal:'',rfc:'',cargo:''},
+				nuevoCliente:{num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',domicilio_fiscal:'',domicilio_fiscal:'',rfc:'',giro:'',cargo:'',notificacion:'',id_delegacion:'',tipo_contrato:''},
 				nuevoElemento:{id:'',tipo:'',cantidad:'',tipo_turno:'',horario:''},
 				nuevoContacto:{id:'',nombre:'',tipo:'',dato:''},
 				clientes:[],
-				nuevoServicio:{nombre_comercial:'',domicilio:'',municipio:'',giro:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
+				nuevoServicio:{nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
 				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
 				mostrarClienteHistorial:[],
 				mostrarServicio:{},
 				delegaciones:[{id:'1', nombre:'VALLES CENTRALES'},
 							{id:'2', nombre:'PINOTEPA'},
-							{id:'2', nombre:'MATIAS ROMERO'},
+							{id:'3', nombre:'MATIAS ROMERO'},
+							{id:'3', nombre:'TUXTEPEC'},
+							{id:'4', nombre:'HUAJUAPAM DE LEON'},
+				],
+				tipo_contra:[{id:'1', nombre:'PRIVADA'},
+							{id:'2', nombre:'ESTATAL'},
+							{id:'2', nombre:'FEDERAL'},
+							{id:'2', nombre:'MUNICIPAL'},
+				],
+				giros:[{id:'1', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR MES'},
+												{id:'2', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 15 DIAS'},
+												{id:'3', nombre:'CON UN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 1 MES'},
+												{id:'4', nombre:'CON UN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 15 DIAS'},
+												{id:'5', nombre:'CON UN ARMA, POR ELEMENTO, MAS RELEVO EN UN TURNO DE 12 HRS POR MES'},
+				],
+				giro:[{id:'1', nombre:'ESCOLTA'},
 				],
 				prueba:[],
 				clienteVer:{razon_social:'',nombre_comercial:'',domicilio_fiscal:'', estatus:''},
-		
 
-				
+
+
 
 				//variables base
 				offset: 3,
@@ -386,7 +401,7 @@ resultado.innerText = "RFC: " + rfc
 
 				search: function(){
 					var url= 'comercializacion/cliente/search';
-					
+
 						axios.post(url,{
                             cliente:this.searchCliente
                         }).then(response=>{
@@ -401,19 +416,19 @@ resultado.innerText = "RFC: " + rfc
 				},
 				store:function(){
 					var url= 'comercializacion/cliente/store';
-					
+
 						axios.post(url,{
                             cliente:this.nuevoCliente
                         }).then(response=>{
                         	this.showAlerts(response.data);
 
-							
+
 							$('#crearCliente').modal('toggle');
                         }).catch(error=>{
                         });
 				},
 				showDelegaciones:function(){
-					
+
 				},
 				addServicio:function(id){
 					this.nuevoServicio.id_cliente=id;
@@ -426,22 +441,22 @@ resultado.innerText = "RFC: " + rfc
 					$('#agregarElementos').modal('show');
 				},
 				storeServicio:function(){
-					
+
 
 
                         var url= 'comercializacion/servicio/store';
-					
+
 						axios.post(url,{
                             servicio:this.nuevoServicio
                         }).then(response=>{
                         	this.showAlerts(response.data);
 
 							this.nuevoServicio={nombre_comercial:'',domicilio:'',municipio:'',giro:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
-													
+
 							$('#agregarServicio').modal('toggle');
                         }).catch(error=>{
                         });
-                      
+
 
 				},
 				storeContacto:function(){
@@ -492,9 +507,9 @@ resultado.innerText = "RFC: " + rfc
 				},
 
 				showCliente: function(id) {
-					
+
 					var url= 'comercializacion/cliente/show';
-					
+
 						axios.post(url,{
                             id:id
                         }).then(response=>{
@@ -505,9 +520,9 @@ resultado.innerText = "RFC: " + rfc
                         });
 				},
 				showClienteHistorial: function(id) {
-					
+
 					var url= 'comercializacion/cliente/servicios/show';
-					
+
 						axios.post(url,{
                             id:id
                         }).then(response=>{
@@ -519,7 +534,7 @@ resultado.innerText = "RFC: " + rfc
 				},
 				showServicio:function (id) {
 					var url= 'comercializacion/servicio/show';
-					
+
 						axios.post(url,{
                             id:id
                         }).then(response=>{
@@ -528,7 +543,7 @@ resultado.innerText = "RFC: " + rfc
 							$('#verServicio').modal('show');
                         }).catch(error=>{
                         });
-					
+
 				},
 
 				editaCliente: function(id){
@@ -536,8 +551,12 @@ resultado.innerText = "RFC: " + rfc
 
 				},
 				addArchivos: function(){
+
 					$('#agregarArchivos').modal('show');
+
 				},
+
+
 
 
 
@@ -580,15 +599,15 @@ resultado.innerText = "RFC: " + rfc
 			      //if s == current sort, reverse
 			      if(s === this.currentSort) {
 			        this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
-			        
+
 			      }
 			      this.currentSort = s;
-			   
+
 			      this.setIcon(document.getElementById(idTh));
 			    },
 
 			    setIcon: function (element) {
-			
+
 			    	if(element.className=="flechas")
 			    	{
 			    		element.className = "sorting asc";
@@ -597,20 +616,20 @@ resultado.innerText = "RFC: " + rfc
 			    	{
 			    		if (element.className == "sorting desc"){
 				    	element.className = "sorting asc";
-				    } 
+				    }
 				    else{
 				    	element.className = "sorting desc";
 				    }
 			    	}
-				    
-				     
+
+
 				  },
 
-				 
 
-		}	
+
+		}
 	});
- 
-	
+
+
 		</script>
 @endsection

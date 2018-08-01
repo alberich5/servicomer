@@ -13,22 +13,22 @@
 				<label>Tipo</label><br>
 				<select class="form-control" id="elemento" v-model="nuevoElemento.tipo">
 				        	<option>ESCOLTA</option>
-				        				        
+
 				      	</select><br>
 
-				<label>Cantidad</label><br>
+				<label>Cantidad Elementos</label><br>
 				<input type="number" class="form-control" v-model="nuevoElemento.cantidad"><br>
 
 				<label>Tipo turno</label><br>
 				<select class="form-control" v-model="nuevoElemento.tipo_turno">
 				      <option>24x24</option>
-				      <option>12x12</option>		        
+				      <option>12x12</option>
 				</select><br>
 
 				<label for="registro">Horario</label>
 				<input type="text" class="form-control" v-model="nuevoElemento.horario"><br>
 
-				
+
 			</div>
 
 
@@ -37,13 +37,13 @@
 				<button type="" class="btn btn-primary" value="Guardar" v-on:click="storeElemento()" >
              <span class="glyphicon glyphicon-ok-circle"></span>
              Aceptar
-                </button> 
+                </button>
 
 				<button class="btn btn-defautl" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove-sign"></span>
 					Cancelar
-				</button> 
-				
+				</button>
+
 			</div>
 		</div>
 	</div>

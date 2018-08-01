@@ -12,17 +12,26 @@
 				<label>ID:</label>
 				<label v-text="mostrarCliente.id"></label>
 				<br>
-
+				<label>No. Contrato:</label>
+				<label ><span class="label label-danger">PENDIENTE</span></label>
+				<br>
+				<label>Tipo Contrato:</label>
+				<label v-text="mostrarCliente.tipo_contrato"></label>
+				<br>
 				<label>Razon social:</label>
 				<label v-text="mostrarCliente.razon_social"></label>
 				<br>
-
+				<label>Domicilio de Notificaciones:</label>
+				<label v-text="mostrarCliente.domicilio_notificacion"></label>
+				<br>
+				<label>Giro:</label>
+				<label v-text="mostrarCliente.giro"></label>
+				<br>
 				<label>Domicilio fiscal:</label>
 				<label v-text="mostrarCliente.domicilio_fiscal"></label>
 				<br>
 
 				<label>Nombre comercial:</label>
-				
 				<label v-text="mostrarCliente.nombre_comercial"></label>
 				<br>
 				<label>Estatus:</label>
@@ -30,10 +39,10 @@
 
 				    	<span class="label label-success" v-show="mostrarCliente.estatus==true" >ACTIVO</span>
 
-				
 
 
-				
+
+
 			</div>
 
 
@@ -44,7 +53,7 @@
 					Cerrar
 				</button>
 
-				
+
 			</div>
 		</div>
 	</div>

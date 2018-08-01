@@ -12,6 +12,8 @@
 
 				<label>Nombre</label><br>
 				<input type="text" class="form-control" name="" v-model="nuevoContacto.nombre"><br>
+				<label for="registro">Cargo</label>
+				<input type="text" class="form-control" v-model="nuevoContacto.cargo">
 
 				<label>Tipo</label><br>
 				<select v-model="nuevoContacto.tipo" class="form-control" id="sel1">
@@ -22,8 +24,8 @@
 
 				<label>Dato</label><br>
 				<input type="text" class="form-control" name="" v-model="nuevoContacto.dato">
-				
-				
+
+
 			</div>
 
 
@@ -32,13 +34,13 @@
 				<button type="" class="btn btn-primary" value="Guardar" v-on:click="storeContacto()" >
              <span class="glyphicon glyphicon-ok-circle"></span>
              Aceptar
-                </button> 
+                </button>
 
 				<button class="btn btn-defautl" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove-sign"></span>
 					Cancelar
-				</button> 
-				
+				</button>
+
 			</div>
 		</div>
 	</div>

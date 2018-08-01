@@ -9,7 +9,7 @@ class ComercializacionCliente extends Model
     protected $table='comerc_cliente';
 
 
-    
+
     protected $connection='pgsql';
 
     protected $fillable =[
@@ -21,6 +21,10 @@ class ComercializacionCliente extends Model
       'nombre_comercial',
       'activo',
       'rfc',
-      'cargo'
+      'cargo',
+      'giro',
+      'domicilio_notificacion',
+      'id_delegacion',
+      'tipo_contrato'
     ];
 }

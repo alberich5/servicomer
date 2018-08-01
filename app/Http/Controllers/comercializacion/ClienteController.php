@@ -42,9 +42,9 @@ class ClienteController extends Controller
 
 
 
-        
-       
-       
+
+
+
        return view ('comercializacion.index');
     }
 
@@ -76,16 +76,16 @@ class ClienteController extends Controller
             ->paginate(10);
             }
 
-            
+
         }
 
-       
+
 
         if(sizeof($clientes)!=0)
         {
             $informacion['resultado']='Busqueda realizada con éxito';
             //recorremos el arreglo de clientes y agregamos sus servicios
-             for ($i=0; $i < sizeof($clientes) ; $i++) { 
+             for ($i=0; $i < sizeof($clientes) ; $i++) {
                  # code...
                 $servicios=ComercializacionServicio::where('id_cliente','=',$clientes[$i]['id'])
                     ->where('estatus','=',true)
@@ -99,9 +99,9 @@ class ClienteController extends Controller
         else{
             $informacion['error']=true;
             $informacion['resultado']='La busqueda no arrojó ningun resultado';
-            
+
         }
-        
+
         return [
             'pagination'=>[
                 'total'         =>$clientes->total(),
@@ -115,7 +115,7 @@ class ClienteController extends Controller
             'informacion'=>$informacion
         ];
 
-        
+
     }
 
     /**
@@ -139,6 +139,7 @@ class ClienteController extends Controller
         $informacion=['error'=>false, 'resultado' => ''];
 
 
+
         try{
             $cliente=new ComercializacionCliente;
             $cliente->razon_social=$request['cliente']['razon_social'];
@@ -146,9 +147,12 @@ class ClienteController extends Controller
             $cliente->fecha_alta=$request['cliente']['fecha'];
             $cliente->nombre_comercial=$request['cliente']['nombre_comercial'];
             $cliente->rfc=$request['cliente']['rfc'];
-            $cliente->rfc=$request['cliente']['cargo'];
+            $cliente->cargo=$request['cliente']['cargo'];
+            $cliente->giro=$request['cliente']['giro'];
+            $cliente->domicilio_notificacion=$request['cliente']['notificacion'];
+            $cliente->id_delegacion=$request['cliente']['id_delegacion'];
+            $cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
             $cliente->save();
-
             $informacion['resultado']='El registro del cliente '.$cliente->razon_social.' fue exitoso';
         }
         catch(\Exception $e) {
@@ -191,11 +195,11 @@ class ClienteController extends Controller
             $cliente=array();
         }
 
-       
 
-        
+
+
         return [
-            
+
             'resultados'=>$cliente,
             'informacion'=>$informacion
         ];
@@ -210,7 +214,7 @@ class ClienteController extends Controller
         {
 
             $servicios=ComercializacionServicio::where('id_cliente','=',$request['id'])
-                   
+
                     //->select('id','nombre_comercial','fecha')
                     ->orderBy('fecha','desc')
                     ->get();
@@ -218,8 +222,8 @@ class ClienteController extends Controller
 
            //falta checar sino tiene servicios no mostrar
              $informacion['resultado']='Historial de servicios del cliente con el id: '.$request['id'];
-            
-            
+
+
         }
         else{
             $informacion['error']=true;
@@ -227,11 +231,11 @@ class ClienteController extends Controller
             $servicios=array();
         }
 
-       
 
-        
+
+
         return [
-            
+
             'resultados'=>$servicios,
             'informacion'=>$informacion
         ];
@@ -259,7 +263,7 @@ class ClienteController extends Controller
         //
     }
 
-   
+
     /**
      * Remove the specified resource from storage.
      *
@@ -270,4 +274,7 @@ class ClienteController extends Controller
     {
         //
     }
+
+
+
 }

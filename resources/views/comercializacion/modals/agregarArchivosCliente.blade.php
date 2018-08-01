@@ -39,7 +39,7 @@
 					        </td>
 					      </tr>
 					       <tr>
-					        <td>Acta Constotutiva</td>
+					        <td>Acta Constitutiva</td>
 					        <td>
 					        	<input type="file" class="form-control" name="file" >
 					        </td>

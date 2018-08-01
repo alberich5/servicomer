@@ -14,21 +14,24 @@
 				<label>Nombre Comercial</label><br>
 				<td><input type="text" class="form-control" v-model="nuevoServicio.nombre_comercial"></td><br>
 
-				<label>Domicilio</label><br>
+				<label>Domicilio del Servicio</label><br>
 				<td><input type="text" class="form-control" v-model="nuevoServicio.domicilio"></td><br>
 
-				<label>Municipio</label><br>
+				<label>Municipio del Servicio</label><br>
 				<td><input type="text" class="form-control" v-model="nuevoServicio.municipio"></td><br>
 
 				<label>Giro</label><br>
 				<td><input type="text" class="form-control" v-model="nuevoServicio.giro"></td><br>
 
+				<label>Nivel Riesgo</label><br>
+				<td><input type="text" class="form-control" v-model="nuevoServicio.riesgo"></td><br>
 
-				<label>Fecha contratación</label><br>
+
+				<label>Fecha contratación Inicial</label><br>
 				<td><input type="date" class="form-control" placeholder="" v-model="nuevoServicio.fecha_contratacion"></td><br>
 
 				<label>Observación</label><br>
-				<td><textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none" rows="4" cols="500"  v-model="nuevoServicio.observacion"></textarea></td><br>				
+				<td><textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none" rows="4" cols="500"  v-model="nuevoServicio.observacion"></textarea></td><br>
 
 
 				<center>
@@ -37,8 +40,8 @@
 			    </button>
 					<label>Contacto Comercial</label>
 				</center><hr><br>
-				
-			   
+
+
 
 				<table id="t1" class="table table-condensed">
 					<tr>
@@ -63,14 +66,14 @@
 					<button   v-on:click.prevent="addElemento()"  type="button" class="btn btn-info btn-xs"><span class="hint--top" data-hint="Agregar Elementos">
 					    <span class="glyphicon glyphicon-plus"></span></span>
 					</button>
-					    
+
 					<label>Modalidad del Servicio</label></center><hr><br>
 
 				<table id="t1" class="table table-condensed">
 					<tr>
 						<td>Tipo</td>
 						<td>Cantidad</td>
-						
+
 					</tr>
 					<tr v-for="elm in nuevoServicio.elementos">
 						<td>
@@ -78,7 +81,7 @@
 							    <span class="glyphicon glyphicon-trash"></span></span>
 							</button>
 						</td>
-						
+
 						<td v-text="elm.tipo"></td>
 						<td v-text="elm.cantidad"></td>
 					</tr>
@@ -92,13 +95,13 @@
 				<button type="submit" class="btn btn-primary" value="Aceptar">
              <span class="glyphicon glyphicon-ok-circle"></span>
              Guardar
-                </button> 
+                </button>
 
 				<button class="btn btn-defautl" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove-sign"></span>
 					Cancelar
-				</button> 
-				
+				</button>
+
 			</div>
 		</div>
 	</div>
