@@ -11,7 +11,7 @@
     <title>{{ config('app.name','P.A.B.I.C.')}}</title>
 
     <!-- Styles -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     @yield('css')
     <style>
     .modal-header {
@@ -20,14 +20,14 @@
     color:#fff;
     font-family:Verdana, sans-serif;
     border-bottom:5px solid #A4A4A4;
-    
-  
+
+
  }
 
  .close{
     color:#FFf;
     opacity: 0.5;
-   
+
  }
 
  .without-padding[class*="col-"] {
@@ -59,7 +59,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                       
+
                         <li class="dropdown">
 
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -68,13 +68,13 @@
 
                                     <ul class="dropdown-menu" role="menu">
                                         <li><a href="{{ route('administrador.usuario.index') }}">Listar</a></li>
-                                   
-                                        <li><a href="{{ route('administrador.usuario.create') }}">Agregar</a></li>
-                                    </ul>      
-                        </li>
-                       
 
-                        
+                                        <li><a href="{{ route('administrador.usuario.create') }}">Agregar</a></li>
+                                    </ul>
+                        </li>
+
+
+
 
                     </ul>
 
@@ -116,7 +116,7 @@
     </div>
 
     <!-- Scripts-->
-    
+
           <script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -128,7 +128,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
 
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="{{asset('js/lodash.js')}}" ></script>
+
     @yield('js')
 </body>
 </html>

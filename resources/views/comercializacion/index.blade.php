@@ -203,12 +203,12 @@
     </div>
 
 
-	<div class="col-sm-12">
+	<!--<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
 		</pre>
-	</div>
+	</div>-->
 
 	@include('comercializacion.modals.crearCliente')
 	@include('comercializacion.modals.agregarServicio')
@@ -424,17 +424,17 @@ resultado.innerText = "RFC: " + rfc
 					 $('#crearCliente').modal('show');
 				},
 				store:function(){
-					var url= 'comercializacion/cliente/store';
+											var url= 'comercializacion/cliente/store';
+												axios.post(url,{
+						                            cliente:this.nuevoCliente
+						                        }).then(response=>{
+						                        	this.showAlerts(response.data);
 
-						axios.post(url,{
-                            cliente:this.nuevoCliente
-                        }).then(response=>{
-                        	this.showAlerts(response.data);
 
+													$('#crearCliente').modal('toggle');
+						                        }).catch(error=>{
+						                        });
 
-							$('#crearCliente').modal('toggle');
-                        }).catch(error=>{
-                        });
 				},
 				showDelegaciones:function(){
 
@@ -450,19 +450,21 @@ resultado.innerText = "RFC: " + rfc
 					$('#agregarElementos').modal('show');
 				},
 				storeServicio:function(){
-					var url= 'comercializacion/servicio/store';
+					if(this.nuevoServicio.nombre_comercial=="" || this.nuevoServicio.domicilio=="" || this.nuevoServicio.municipio=="" || this.nuevoServicio.giro=="" || this.nuevoServicio.observacion=="" || this.nuevoServicio.id_delegacion=="" || this.nuevoServicio.fecha_contratacion=="" )
+										{
+											toastr.error("Todos los campos son necesarios");//mensaje flotante
+										}else{
 
+					var url= 'comercializacion/servicio/store';
 						axios.post(url,{
                             servicio:this.nuevoServicio
                         }).then(response=>{
                         	this.showAlerts(response.data);
-
 						//	this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
-
 							$('#agregarServicio').modal('toggle');
                         }).catch(error=>{
                         });
-
+											}//fin del else
 
 				},
 				storeContacto:function(){
