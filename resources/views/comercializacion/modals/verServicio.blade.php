@@ -91,7 +91,7 @@
 								<tr>
 									<td>Opciones</td>
 									<td>Nombre</td>
-									<td>Tipo</td>
+
 									<td>Telefono</td>
 									<td>Correo</td>
 									<td>Celular</td>
@@ -103,7 +103,7 @@
 										</button>
 									</td>
 									<td v-text="cont.nombre"></td>
-									<td v-text="cont.tipo"></td>
+								
 									<td v-text="cont.telefono"></td>
 									<td v-text="cont.correo"></td>
 									<td v-text="cont.celular"></td>

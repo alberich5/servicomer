@@ -13,10 +13,13 @@
 				<label for="registro">Nombre</label>
 				<input type="text" class="form-control" v-model="mostrarServicio.nombre_comercial" >
 				<!---domiciolio fiscal-->
-				<label for="registro">Tipo</label>
-				<textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none" rows="4" cols="500" ></textarea>
-				<!---rfc-->
-				<label for="registro">Dato</label>
+				<label for="registro">Telefono</label>
+				<textarea  class="form-control" ></textarea>
+				<!---Correo-->
+				<label for="registro">Correo</label>
+				<input type="text" class="form-control" >
+				<!---Celular-->
+				<label for="registro">Celular</label>
 				<input type="text" class="form-control" >
 
 

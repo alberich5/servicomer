@@ -10,12 +10,28 @@
 			</div>
 			<div class="modal-body">
 
-				<label>Tipo</label><br>
-								<select class="form-control" v-model="nuevoElemento.tipo">
+
+								<!--<select class="form-control" v-model="nuevoElemento.tipo">
 				                        <option v-for="mo in modalidad" v-bind:value="mo.nombre" class="lista">
 				                          @{{ mo.nombre}}  $@{{ mo.precio}}
 				                        </option>
-				        </select>
+				        </select>-->
+								<div >
+													<label> TIPO SERVICIOS</label>
+													<br>
+
+												  <select v-model="firstOptions" class="form-control">
+												    <option v-for="(item, index) in list">@{{ index }}</option>
+												  </select>
+
+
+												</div>
+												<br>
+												<div>
+													<select v-model="nuevoElemento.tipo" v-if="firstOptions" class="form-control">
+												    <option v-for="option in list[firstOptions]" v-bind:value="option.tipo_servicio">@{{option.tipo_servicio}}, Costo: $@{{option.precio}}</option>
+												  </select>
+												</div>
 
 				<label>Cantidad Elementos</label><br>
 				<input type="number" class="form-control" v-model="nuevoElemento.cantidad"><br>

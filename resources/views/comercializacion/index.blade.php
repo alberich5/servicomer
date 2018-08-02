@@ -203,12 +203,12 @@
     </div>
 
 
-	<div class="col-sm-12">
+	<!---<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
 		</pre>
-	</div>
+	</div>-->
 
 	@include('comercializacion.modals.crearCliente')
 	@include('comercializacion.modals.agregarServicio')
@@ -516,7 +516,7 @@ resultado.innerText =  "Formato: " + valido;
                             servicio:this.nuevoServicio
                         }).then(response=>{
                         	this.showAlerts(response.data);
-						//	this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
+
 							$('#agregarServicio').modal('toggle');
                         }).catch(error=>{
                         });

@@ -12,12 +12,12 @@
 				<!---razon social-->
 				<label for="registro">Tipo</label>
 				<input type="text" class="form-control" >
-				<!---domiciolio fiscal-->
+				<!---Tipo Horario-->
 				<label for="registro">Tipo Horario</label>
-				<textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none" rows="4" cols="500" ></textarea>
-				<!---rfc-->
-				<label for="registro">Horario</label>
         <input type="text" class="form-control" >
+				<!---Horario-->
+				<label for="registro">Horario</label>
+				<input type="text" class="form-control" >
 
 
 
