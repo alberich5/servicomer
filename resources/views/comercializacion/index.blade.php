@@ -203,12 +203,12 @@
     </div>
 
 
-	<!--<div class="col-sm-12">
+	<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
 		</pre>
-	</div>-->
+	</div>
 
 	@include('comercializacion.modals.crearCliente')
 	@include('comercializacion.modals.agregarServicio')
@@ -306,7 +306,7 @@ resultado.innerText = "RFC: " + rfc
 				nuevoElemento:{id:'',tipo:'',cantidad:'',tipo_turno:'',horario:''},
 				nuevoContacto:{id:'',nombre:'',tipo:'',dato:''},
 				clientes:[],
-				nuevoServicio:{nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
+				nuevoServicio:{id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
 				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
 				editarCliente:{},
 				mostrarClienteHistorial:[],
@@ -450,17 +450,14 @@ resultado.innerText = "RFC: " + rfc
 					$('#agregarElementos').modal('show');
 				},
 				storeServicio:function(){
-
-
-
-                        var url= 'comercializacion/servicio/store';
+					var url= 'comercializacion/servicio/store';
 
 						axios.post(url,{
                             servicio:this.nuevoServicio
                         }).then(response=>{
                         	this.showAlerts(response.data);
 
-							this.nuevoServicio={nombre_comercial:'',domicilio:'',municipio:'',giro:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
+						//	this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
 
 							$('#agregarServicio').modal('toggle');
                         }).catch(error=>{

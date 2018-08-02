@@ -23,6 +23,7 @@ class ServicioController extends Controller
     {
 
 
+
     }
 
     public function search(Request $request)
@@ -61,16 +62,16 @@ class ServicioController extends Controller
            $ultimocontrato = ComercializacionContrato::orderBy('id', 'desc')->first();
 
              $servicio=new ComercializacionServicio;
-              $servicio->id_cliente=$request['servicio']['id_cliente'];
-              $servicio->id_contrato=$ultimocontrato->id;
-              $servicio->nombre_comercial=strtoupper($request['servicio']['nombre_comercial']);
-              $servicio->domicilio=strtoupper($request['servicio']['domicilio']);
-              $servicio->municipio=strtoupper($request['servicio']['municipio']);
-              $servicio->giro=strtoupper($request['servicio']['giro']);
-              $servicio->tipo=strtoupper('normal');
-              $servicio->observacion=strtoupper($request['servicio']['observacion']);
-              $servicio->id_delegacion=strtoupper($request['servicio']['id_delegacion']);
-              $servicio->fecha=$request['servicio']['fecha_contratacion'];
+             $servicio->id_cliente=$request['servicio']['id_cliente'];
+             $servicio->id_contrato=$ultimocontrato->id;
+             $servicio->nombre_comercial=strtoupper($request['servicio']['nombre_comercial']);
+             $servicio->domicilio=strtoupper($request['servicio']['domicilio']);
+             $servicio->municipio=strtoupper($request['servicio']['municipio']);
+             $servicio->giro=strtoupper($request['servicio']['giro']);
+             $servicio->tipo=strtoupper('normal');
+             $servicio->observacion=strtoupper($request['servicio']['observacion']);
+             $servicio->id_delegacion=strtoupper($request['servicio']['id_delegacion']);
+             $servicio->fecha=$request['servicio']['fecha_contratacion'];
               $servicio->save();
 
               $ultimoservicio = ComercializacionServicio::orderBy('id', 'desc')->first();
@@ -85,7 +86,7 @@ class ServicioController extends Controller
                   $contacto->nombre=$contactos[$i]['nombre'];
                   $contacto->tipo=$contactos[$i]['tipo'];
                   $contacto->dato=$contactos[$i]['dato'];
-                  $contacto->id_area=2;
+                  $contacto->id_departamento=2;
                   $contacto->id_servicio=$servicio->id;
                   $contacto->save();
               }
@@ -191,9 +192,80 @@ class ServicioController extends Controller
     public function prueba(Request $request)
     {
 
-      $ultimoservicio = ComercializacionServicio::orderBy('id', 'desc')
-      ->first();
-    dd($ultimoservicio->id);
+      $request['servicio']=array(  "id_cliente"=>12,        "nombre_comercial"=> "rfgdef",
+          "domicilio"=> "vgeswdgwed",
+          "municipio"=> "gswe",
+          "giro"=> "sdgviodngoi",
+          "riesgo"=> "dfghdfh",
+          "id_delegacion"=> "1",
+          "fecha_contratacion"=> "2018-08-02",
+          "observacion"=> "sdgsdgdsg",
+          "contactos"=>array(
+            array( "id"=> 1,
+              "nombre"=> "sdgsdg",
+              "tipo"=> "Telefono",
+              "dato"=> "sdgsdgds",
+              "cargo"=> "sdgsdsdg")
+            ),
+          "elementos"=> array(array(   "id"=> 1,
+            "tipo"=> "ESCOLTA",
+            "cantidad"=> "4",
+            "tipo_turno"=> "24x24",
+            "horario"=> "kswlrk",
+          "id_cliente"=> 12))
+        );
+        $informacion=['error'=>false, 'resultado' => ''];
+
+        //contrato
+         $comerContrato=new ComercializacionContrato;
+         $comerContrato->observacion="Contrato comercializa";
+         $comerContrato->save();
+         $ultimocontrato = ComercializacionContrato::orderBy('id', 'desc')->first();
+
+
+           $servicio=new ComercializacionServicio;
+            $servicio->id_cliente=$request['servicio']['id_cliente'];
+            $servicio->id_contrato=$ultimocontrato->id;
+            $servicio->nombre_comercial=strtoupper($request['servicio']['nombre_comercial']);
+            $servicio->domicilio=strtoupper($request['servicio']['domicilio']);
+            $servicio->municipio=strtoupper($request['servicio']['municipio']);
+            $servicio->giro=strtoupper($request['servicio']['giro']);
+            $servicio->tipo=strtoupper('normal');
+            $servicio->observacion=strtoupper($request['servicio']['observacion']);
+            $servicio->id_delegacion=strtoupper($request['servicio']['id_delegacion']);
+            $servicio->fecha=$request['servicio']['fecha_contratacion'];
+            $servicio->save();
+
+
+            //aqui se agrega la solicitud
+            $solicitudServicio=new analisis_riesg_solicitud_servicio;
+             $solicitudServicio->id_servicio=$servicio->id;
+             $solicitudServicio->save();
+
+            $contactos=$request['servicio']['contactos'];
+        //  for ($i=0; $i < sizeof($contactos); $i++) {
+                $contacto=new ComercializacionServicioContacto;
+                $contacto->nombre=$contactos[0]['nombre'];
+                $contacto->tipo=$contactos[0]['tipo'];
+                $contacto->dato=$contactos[0]['dato'];
+                $contacto->id_departamento=2;
+                $contacto->id_servicio=$servicio->id;
+                $contacto->save();
+          //  }
+
+            $elementos=$request['servicio']['elementos'];
+          //  for ($i=0; $i < sizeof($elementos); $i++) {
+              //  for ($j=0; $j < $elementos[$i]['cantidad']; $j++) {
+                $elemento=new ComercializacionServicioElemento;
+                $elemento->tipo_turno=$elementos[0]['tipo_turno'];
+                $elemento->tipo=$elementos[0]['tipo'];
+                $elemento->horario=$elementos[0]['horario'];
+                $elemento->id_servicio=$servicio->id;
+                $elemento->save();
+              //  }
+          //  }
+
+return $elemento;
 
 
     }

@@ -18,6 +18,7 @@ class ClienteController extends Controller
      */
     public function index()
     {
+      /*
         $request['cliente']['id']="";
         $request['cliente']['num_cliente']="";
         $request['cliente']['razon_social']="dhfhfdhfd";
@@ -39,11 +40,10 @@ class ClienteController extends Controller
         "cantidad"=> "4",
         "tipo_turno"=> "24x24",
         "horario"=> "kswlrk"
-      );
+      );*/
 
 
-
-
+    
 
 
        return view ('comercializacion.index');
