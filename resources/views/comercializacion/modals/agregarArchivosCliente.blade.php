@@ -1,4 +1,4 @@
-<form method="POST" >
+
 <div class="modal fade" id="agregarArchivos" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -9,7 +9,7 @@
 				<center><h4>Subir Archivos</h4></center>
 			</div>
 			<div class="modal-body">
-				
+
 				<div class="row"><!---persona moral-->
 					<center><h4>Persona Moral</h4></center>
 					<table class="table">
@@ -23,7 +23,8 @@
 					      <tr>
 					        <td >Identificacion Ofical</td>
 					        <td>
-					        	<input type="file" class="form-control" name="file" >
+										<input type="file" name="image"  accept="image/*">
+        						<button >cargar</button>
 					        </td>
 					      </tr>
 					      <tr>
@@ -132,4 +133,3 @@
 		</div>
 	</div>
 </div>
-</form>

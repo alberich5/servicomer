@@ -203,12 +203,12 @@
     </div>
 
 
-	<!--<div class="col-sm-12">
+	<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
 		</pre>
-	</div>-->
+	</div>
 
 	@include('comercializacion.modals.crearCliente')
 	@include('comercializacion.modals.agregarServicio')
@@ -288,8 +288,7 @@ valido = "No válido"
 resultado.classList.remove("ok");
 }
 
-resultado.innerText = "RFC: " + rfc
-                  + "\nFormato: " + valido;
+resultado.innerText =  "Formato: " + valido;
 }
 </script>
 
@@ -431,14 +430,17 @@ resultado.innerText = "RFC: " + rfc
 						                        	this.showAlerts(response.data);
 
 
+
 													$('#crearCliente').modal('toggle');
 						                        }).catch(error=>{
 						                        });
 
+						this.nuevoCliente={num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',rfc:'',domicilio_fiscal:''};
 				},
 				showDelegaciones:function(){
 
 				},
+
 				addServicio:function(id){
 					this.nuevoServicio.id_cliente=id;
 					$('#agregarServicio').modal('show');
