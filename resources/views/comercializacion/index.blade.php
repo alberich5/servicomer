@@ -203,12 +203,12 @@
     </div>
 
 
-	<div class="col-sm-12">
+	<!--<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
 		</pre>
-	</div>
+	</div>-->
 
 	@include('comercializacion.modals.crearCliente')
 	@include('comercializacion.modals.agregarServicio')
@@ -308,6 +308,7 @@ resultado.innerText = "RFC: " + rfc
 				clientes:[],
 				nuevoServicio:{nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
 				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
+				editarCliente:{},
 				mostrarClienteHistorial:[],
 				mostrarServicio:{},
 				delegaciones:[{id:'1', nombre:'VALLES CENTRALES'},
@@ -325,15 +326,19 @@ resultado.innerText = "RFC: " + rfc
 							{id:'2', nombre:'MEDIO'},
 							{id:'3', nombre:'BAJO'},
 				],
-				giros:[{id:'1', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR MES'},
-												{id:'2', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 15 DIAS'},
-												{id:'3', nombre:'CON UN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 1 MES'},
-												{id:'4', nombre:'CON UN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 15 DIAS'},
-												{id:'5', nombre:'CON UN ARMA, POR ELEMENTO, MAS RELEVO EN UN TURNO DE 12 HRS POR MES'},
+				giros:[{id:'1', nombre:'GASOLINERAS/GASERAS'},
+												{id:'2', nombre:'AGENCIAS AUTOMOTRICES/MOTOCICLETAS'},
+												{id:'3', nombre:'BANCOS'},
+												{id:'4', nombre:'BEBIDAS/CERVECEZA/REFRESCOS/MEZCAL'},
+												{id:'5', nombre:'CENTRO COMERCIAL'},
+												{id:'6', nombre:'CLINICAS/HOSPITALES/MEDICOS/OCULISTAS'},
+												{id:'7', nombre:'CONSTRUCCION/FERRETERO/CEMENTO'},
+												{id:'8', nombre:'ESCOLTA/PARTICULAR/EVENTOS SOCIALES'},
+												{id:'9', nombre:'ESTATAL/CLINICAS HOSPITALES'},
 				],
 				giro:[{id:'1', nombre:'ESCOLTA'},
 				],
-				prueba:[],
+				prueba:'prueba',
 				clienteVer:{razon_social:'',nombre_comercial:'',domicilio_fiscal:'', estatus:''},
 
 
@@ -551,7 +556,17 @@ resultado.innerText = "RFC: " + rfc
 				},
 
 				editaCliente: function(id){
-						$('#editarCliente').modal('show');
+					var url= 'comercializacion/cliente/show';
+
+						axios.post(url,{
+                            id:id
+                        }).then(response=>{
+                        	this.showAlerts(response.data.informacion);
+							this.editarCliente=response.data.resultados;
+							$('#editarCliente').modal('show');
+                        }).catch(error=>{
+                        });
+					//	$('#editarCliente').modal('show');
 
 				},
 				addArchivos: function(){

@@ -20,7 +20,7 @@
 				<label>Municipio del Servicio</label><br>
 				<td><input type="text" class="form-control" v-model="nuevoServicio.municipio"></td><br>
 
-				<label for="">Delegacion Sub. Delegacion</label>
+				<label for="">Delegacion Sub. Delegacion Asignado</label>
 				<select class="form-control" v-model="nuevoServicio.id_delegacion">
                         <option v-for="de in delegaciones" v-bind:value="de.id" class="lista">
                           @{{ de.nombre}}

@@ -69,7 +69,7 @@ nav.navbar {
 }
 
 .table{
-	   text-align: center;	
+	   text-align: center;
   	background-color: #fff;
   	table-layout: fixed;
 
@@ -109,7 +109,7 @@ nav.navbar {
 }
 
 .close {
-    color: white; 
+    color: white;
     opacity: 1;
 }
 
@@ -137,9 +137,9 @@ nav.navbar {
 }
 
 hr {
-  border: 0; 
+  border: 0;
   border-top: 1px solid #BDBDBD;
-  border-bottom: 1px solid #BDBDBD; 
+  border-bottom: 1px solid #BDBDBD;
   height:0;
 }
 

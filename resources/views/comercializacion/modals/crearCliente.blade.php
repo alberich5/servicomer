@@ -52,7 +52,7 @@
 				<input type="date" class="form-control" v-model="nuevoCliente.fecha">
 				<br>
 				<!---Delegaciones-->
-				<label for="">Delegacion</label>
+				<label for="">Delegacion del Contrato</label>
 				<select class="form-control" v-model="nuevoCliente.id_delegacion">
                         <option v-for="de in delegaciones" v-bind:value="de.id" class="lista">
                           @{{ de.nombre}}
@@ -69,9 +69,9 @@
 				<button type="submit" class="btn btn-primary" value="Aceptar">
              <span class="glyphicon glyphicon-ok-sign"></span>
              Aceptar
-                </button>
+        </button>
 
-				<button class="btn btn-defautl" data-dismiss="modal">
+				<button class="btn btn-danger" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove-sign"></span>
 					Cancelar
 				</button>

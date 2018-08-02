@@ -11,23 +11,32 @@
 			<div class="modal-body">
 
 				<label>Razon social</label><br>
-				<input type="text" class="form-control" v-modal="clientes.razon_social"><br>
+				<input type="text" class="form-control" v-model="editarCliente.razon_social" ><br>
 
 				<label>Domicilio fiscal</label><br>
-				<input type="text" class="form-control" v-modal=""><br>
+				<input type="text" class="form-control" v-model="editarCliente.domicilio_fiscal" ><br>
 
 				<label>Nombre comercial</label><br>
-				<input type="text" class="form-control" v-modal=""><br>
+				<input type="text" class="form-control" v-model="editarCliente.nombre_comercial"><br>
+
+				<label>Giro</label><br>
+				<input type="text" class="form-control" v-model="editarCliente.giro"><br>
+
+				<label>Tipo Contrato</label><br>
+				<input type="text" class="form-control" v-model="editarCliente.tipo_contrato"><br>
+
+				<label>Domicilio Notificacion</label><br>
+				<input type="text" class="form-control" v-model="editarCliente.domicilio_notificacion"><br>
 
 				<label>Estatus</label><br>
-				<select class="form-control" v-modal="">
+				<select class="form-control" v-model="editarCliente.estatus">
 					<option>Activo</option>
 					<option>Inactivo</option>
 				</select><br>
 
-				
 
-				
+
+
 			</div>
 
 
@@ -36,9 +45,9 @@
 				<button type="" class="btn btn-primary" value="Guardar" v-on:click="" >
              <span class="glyphicon glyphicon-ok-circle"></span>
              Aceptar
-                </button> 
+                </button>
 
-				
+
 			</div>
 		</div>
 	</div>
