@@ -219,6 +219,8 @@
 	@include('comercializacion.modals.verServicio')
 	@include('comercializacion.modals.editarCliente')
 	@include('comercializacion.modals.agregarArchivosCliente')
+	@include('comercializacion.modals.editarContacto')
+	@include('comercializacion.modals.editarModalidad')
 
 
 
@@ -439,6 +441,12 @@ resultado.innerText =  "Formato: " + valido;
 				showDelegaciones:function(){
 
 				},
+				editarContacto:function(){
+						$('#editarContacto').modal('show');
+				},
+				editarModalidad:function(){
+						$('#editarModalidad').modal('show');
+				},
 
 				addServicio:function(id){
 					this.nuevoServicio.id_cliente=id;
@@ -451,7 +459,7 @@ resultado.innerText =  "Formato: " + valido;
 					$('#agregarElementos').modal('show');
 				},
 				storeServicio:function(){
-					if(this.nuevoServicio.nombre_comercial=="" || this.nuevoServicio.domicilio=="" || this.nuevoServicio.municipio=="" || this.nuevoServicio.giro=="" || this.nuevoServicio.observacion=="" || this.nuevoServicio.id_delegacion=="" || this.nuevoServicio.fecha_contratacion=="" )
+					if(this.nuevoServicio.nombre_comercial=="" || this.nuevoServicio.domicilio=="" || this.nuevoServicio.municipio=="" || this.nuevoServicio.giro==""  || this.nuevoServicio.id_delegacion=="" || this.nuevoServicio.fecha_contratacion=="" )
 										{
 											toastr.error("Todos los campos son necesarios");//mensaje flotante
 										}else{

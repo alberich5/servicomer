@@ -1,23 +1,24 @@
 <form method="POST" v-on:submit.prevent="store">
-<div class="modal fade" id="editarContacto" data-backdrop="static">
+<div class="modal fade" id="editarModalidad" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span>&times;</span>
 				</button>
-				<center><h4>Editar Contacto</h4></center>
+				<center><h4>Editar Modalidad</h4></center>
 			</div>
 			<div class="modal-body">
 				<!---razon social-->
-				<label for="registro">Nombre</label>
-				<input type="text" class="form-control" v-model="mostrarServicio.nombre_comercial" >
-				<!---domiciolio fiscal-->
 				<label for="registro">Tipo</label>
+				<input type="text" class="form-control" >
+				<!---domiciolio fiscal-->
+				<label for="registro">Tipo Horario</label>
 				<textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none" rows="4" cols="500" ></textarea>
 				<!---rfc-->
-				<label for="registro">Dato</label>
-				<input type="text" class="form-control" >
+				<label for="registro">Horario</label>
+        <input type="text" class="form-control" >
+
 
 
 

@@ -154,10 +154,10 @@ class ClienteController extends Controller
             $cliente->domicilio_fiscal=strtoupper($request['cliente']['domicilio_fiscal']);
             $cliente->fecha_alta=$request['cliente']['fecha'];
             $cliente->nombre_comercial=strtoupper($request['cliente']['nombre_comercial']);
-            $cliente->rfc=strtoupper($request['cliente']['rfc']);
+            $cliente->rfc="PENDIENTE";//no necesario que lo capturen
             $cliente->cargo=strtoupper($request['cliente']['cargo']);
             $cliente->giro=strtoupper($request['cliente']['giro']);
-            $cliente->domicilio_notificacion=strtoupper($request['cliente']['notificacion']);
+            $cliente->domicilio_notificacion="PENDIENTE";//no necesario que lo capturen
             $cliente->id_delegacion=$request['cliente']['id_delegacion'];
             $cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
             $cliente->id_representante_legal=$ultimorep->id;

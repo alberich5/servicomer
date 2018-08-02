@@ -34,19 +34,20 @@
                         </option>
         </select>
 
-				<label>Nivel Riesgo</label><br>
+				<!--<label>Nivel Riesgo</label><br>
 				<select class="form-control" v-model="nuevoCliente.riesgo">
                         <option v-for="nivel in nivelRiesgo" v-bind:value="nivel.nombre" class="lista">
                           @{{ nivel.nombre}}
                         </option>
 				</select>
+				-->
 
 
-				<label>Fecha contratación Inicial</label><br>
+				<label>Fecha Inicial Servicio</label><br>
 				<td><input type="date" class="form-control" placeholder="" v-model="nuevoServicio.fecha_contratacion" required style="text-transform: uppercase;"></td><br>
 
 				<label>Observación</label><br>
-				<td><textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none" rows="4" cols="500"  v-model="nuevoServicio.observacion" required style="text-transform: uppercase;"></textarea></td><br>
+				<td><textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none" rows="4" cols="500"  v-model="nuevoServicio.observacion"  style="text-transform: uppercase;"></textarea></td><br>
 
 
 				<center>

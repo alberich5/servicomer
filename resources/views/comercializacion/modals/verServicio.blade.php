@@ -11,7 +11,7 @@
 			<div class="modal-body">
 
 
-				
+
 				<table id="t1" class="table table-condensed">
 						<tr>
 						<td>Numero de cliente</td>
@@ -90,7 +90,7 @@
 								</tr>
 								<tr v-for="cont in mostrarServicio.contactos">
 									<td>
-										<button   v-on:click.prevent="removeContacto(cont.id)"  type="button" class="btn btn-info btn-xs"><span class="hint--top" data-hint="Editar contacto">
+										<button   v-on:click.prevent="editarContacto(cont.id)"  type="button" class="btn btn-info btn-xs"><span class="hint--top" data-hint="Editar contacto">
 										    <span class="glyphicon glyphicon-pencil"></span></span>
 										</button>
 									</td>
@@ -103,7 +103,7 @@
 						</tr>
 
 						<tr>
-						<td colspan="2">Elementos</td>
+						<td colspan="2">Modalidad</td>
 						</tr>
 						<tr>
 						<td colspan="2">
@@ -117,14 +117,14 @@
 								</tr>
 								<tr v-for="elem in mostrarServicio.elementos">
 									<td>
-										<button   v-on:click.prevent="removeContacto(elem.id)"  type="button" class="btn btn-defautl btn-xs"><span class="hint--top" data-hint="Editar contacto">
+										<button   v-on:click.prevent="editarModalidad(elem.id)"  type="button" class="btn btn-defautl btn-xs"><span class="hint--top" data-hint="Editar contacto">
 										    <span class="glyphicon glyphicon-pencil"></span></span>
 										</button>
 									</td>
 									<td>
 										<span class="label label-danger" v-if="elem.id_elemento==null" >SIN ASIGNAR</span>
 
-				    					
+
 									</td>
 									<td v-text="elem.tipo"></td>
 									<td v-text="elem.tipo_turno"></td>
@@ -134,10 +134,10 @@
 						</td>
 						</tr>
 
-				
+
 				</table>
 
-				
+
 			</div>
 
 
@@ -148,7 +148,7 @@
 					Cerrar
 				</button>
 
-				
+
 			</div>
 		</div>
 	</div>
