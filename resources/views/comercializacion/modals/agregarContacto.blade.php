@@ -11,9 +11,9 @@
 			<div class="modal-body">
 
 				<label>Nombre</label><br>
-				<input type="text" class="form-control" name="" v-model="nuevoContacto.nombre"><br>
+				<input type="text" class="form-control" name="" v-model="nuevoContacto.nombre" required style="text-transform: uppercase;"><br>
 				<label for="registro">Cargo</label>
-				<input type="text" class="form-control" v-model="nuevoContacto.cargo">
+				<input type="text" class="form-control" v-model="nuevoContacto.cargo" required style="text-transform: uppercase;">
 
 				<label>Tipo</label><br>
 				<select v-model="nuevoContacto.tipo" class="form-control" id="sel1">
@@ -23,7 +23,7 @@
 				      	</select><br>
 
 				<label>Dato</label><br>
-				<input type="text" class="form-control" name="" v-model="nuevoContacto.dato">
+				<input type="text" class="form-control" name="" v-model="nuevoContacto.dato" required style="text-transform: uppercase;">
 
 
 			</div>

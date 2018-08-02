@@ -429,13 +429,12 @@ resultado.innerText =  "Formato: " + valido;
 						                        }).then(response=>{
 						                        	this.showAlerts(response.data);
 
-
-
 													$('#crearCliente').modal('toggle');
 						                        }).catch(error=>{
 						                        });
-
 						this.nuevoCliente={num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',rfc:'',domicilio_fiscal:''};
+						//llamar la busqueda
+						this.search();
 				},
 				showDelegaciones:function(){
 

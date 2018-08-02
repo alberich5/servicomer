@@ -11,7 +11,7 @@
 			<div class="modal-body">
 
 				<label>Tipo</label><br>
-				<select class="form-control" id="elemento" v-model="nuevoElemento.tipo">
+				<select class="form-control" id="elemento" v-model="nuevoElemento.tipo" required style="text-transform: uppercase;">
 				        	<option>ESCOLTA</option>
 
 				      	</select><br>
@@ -26,7 +26,7 @@
 				</select><br>
 
 				<label for="registro">Horario</label>
-				<input type="text" class="form-control" v-model="nuevoElemento.horario"><br>
+				<input type="text" class="form-control" v-model="nuevoElemento.horario" required style="text-transform: uppercase;"><br>
 
 
 			</div>

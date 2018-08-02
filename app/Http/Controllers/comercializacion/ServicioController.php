@@ -57,7 +57,7 @@ class ServicioController extends Controller
         try{
           //contrato
            $comerContrato=new ComercializacionContrato;
-           $comerContrato->observacion="Contrato comercializa";
+           $comerContrato->observacion=strtoupper("Contrato comercializa");
            $comerContrato->save();
            $ultimocontrato = ComercializacionContrato::orderBy('id', 'desc')->first();
 
@@ -83,8 +83,8 @@ class ServicioController extends Controller
               $contactos=$request['servicio']['contactos'];
               for ($i=0; $i < sizeof($contactos); $i++) {
                   $contacto=new ComercializacionServicioContacto;
-                  $contacto->nombre=$contactos[$i]['nombre'];
-                  $contacto->tipo=$contactos[$i]['tipo'];
+                  $contacto->nombre=strtoupper($contactos[$i]['nombre']);
+                  $contacto->tipo=strtoupper($contactos[$i]['tipo']);
                   $contacto->dato=$contactos[$i]['dato'];
                   $contacto->id_departamento=2;
                   $contacto->id_servicio=$servicio->id;
@@ -94,9 +94,9 @@ class ServicioController extends Controller
               for ($i=0; $i < sizeof($elementos); $i++) {
                   for ($j=0; $j < $elementos[$i]['cantidad']; $j++) {
                   $elemento=new ComercializacionServicioElemento;
-                  $elemento->tipo_turno=$elementos[$i]['tipo_turno'];
-                  $elemento->tipo=$elementos[$i]['tipo'];
-                  $elemento->horario=$elementos[$i]['horario'];
+                  $elemento->tipo_turno=strtoupper($elementos[$i]['tipo_turno']);
+                  $elemento->tipo=strtoupper($elementos[$i]['tipo']);
+                  $elemento->horario=strtoupper($elementos[$i]['horario']);
                   $elemento->id_servicio=$servicio->id;
                   $elemento->save();
                   }

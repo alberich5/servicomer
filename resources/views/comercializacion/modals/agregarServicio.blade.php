@@ -12,13 +12,13 @@
 				<center><label>Datos del Cliente</label></center><hr>
 
 				<label>Nombre Comercial</label><br>
-				<td><input type="text" class="form-control" v-model="nuevoServicio.nombre_comercial"></td><br>
+				<td><input type="text" class="form-control" v-model="nuevoServicio.nombre_comercial" required style="text-transform: uppercase;"></td><br>
 
 				<label>Domicilio del Servicio</label><br>
-				<td><input type="text" class="form-control" v-model="nuevoServicio.domicilio"></td><br>
+				<td><input type="text" class="form-control" v-model="nuevoServicio.domicilio" required style="text-transform: uppercase;"></td><br>
 
 				<label>Municipio del Servicio</label><br>
-				<td><input type="text" class="form-control" v-model="nuevoServicio.municipio"></td><br>
+				<td><input type="text" class="form-control" v-model="nuevoServicio.municipio" required style="text-transform: uppercase;"></td><br>
 
 				<label for="">Delegacion Sub. Delegacion Asignado</label>
 				<select class="form-control" v-model="nuevoServicio.id_delegacion">
@@ -43,10 +43,10 @@
 
 
 				<label>Fecha contratación Inicial</label><br>
-				<td><input type="date" class="form-control" placeholder="" v-model="nuevoServicio.fecha_contratacion"></td><br>
+				<td><input type="date" class="form-control" placeholder="" v-model="nuevoServicio.fecha_contratacion" required style="text-transform: uppercase;"></td><br>
 
 				<label>Observación</label><br>
-				<td><textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none" rows="4" cols="500"  v-model="nuevoServicio.observacion"></textarea></td><br>
+				<td><textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none" rows="4" cols="500"  v-model="nuevoServicio.observacion" required style="text-transform: uppercase;"></textarea></td><br>
 
 
 				<center>

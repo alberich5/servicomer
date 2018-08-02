@@ -43,7 +43,7 @@ class ClienteController extends Controller
       );*/
 
 
-    
+
 
 
        return view ('comercializacion.index');
@@ -144,20 +144,20 @@ class ClienteController extends Controller
         try{
           //Aqui se guarda el representante legal
             $repLegal=new RepresentanteLegal;
-            $repLegal->nombre=$request['cliente']['replegal'];
+            $repLegal->nombre=strtoupper($request['cliente']['replegal']);
             $repLegal->tipo="Cliente";
             $repLegal->save();
             $ultimorep = RepresentanteLegal::orderBy('id', 'desc')->first();
             //Aqui se guarda el cliente
             $cliente=new ComercializacionCliente;
-            $cliente->razon_social=$request['cliente']['razon_social'];
-            $cliente->domicilio_fiscal=$request['cliente']['domicilio_fiscal'];
+            $cliente->razon_social=strtoupper($request['cliente']['razon_social']);
+            $cliente->domicilio_fiscal=strtoupper($request['cliente']['domicilio_fiscal']);
             $cliente->fecha_alta=$request['cliente']['fecha'];
-            $cliente->nombre_comercial=$request['cliente']['nombre_comercial'];
-            $cliente->rfc=$request['cliente']['rfc'];
-            $cliente->cargo=$request['cliente']['cargo'];
-            $cliente->giro=$request['cliente']['giro'];
-            $cliente->domicilio_notificacion=$request['cliente']['notificacion'];
+            $cliente->nombre_comercial=strtoupper($request['cliente']['nombre_comercial']);
+            $cliente->rfc=strtoupper($request['cliente']['rfc']);
+            $cliente->cargo=strtoupper($request['cliente']['cargo']);
+            $cliente->giro=strtoupper($request['cliente']['giro']);
+            $cliente->domicilio_notificacion=strtoupper($request['cliente']['notificacion']);
             $cliente->id_delegacion=$request['cliente']['id_delegacion'];
             $cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
             $cliente->id_representante_legal=$ultimorep->id;
