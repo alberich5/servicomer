@@ -11,7 +11,7 @@
 			<div class="modal-body">
 				<center><label>Datos del Cliente</label></center><hr>
 
-				<label>Nombre Comercial</label><br>
+				<label>Sucursal u Oficina</label><br>
 				<td><input type="text" class="form-control" v-model="nuevoServicio.nombre_comercial" required style="text-transform: uppercase;"></td><br>
 
 				<label>Domicilio del Servicio</label><br>
@@ -63,8 +63,10 @@
 					<tr>
 						<td>Opciones</td>
 						<td>Nombre</td>
-						<td>Tipo</td>
-						<td>Dato</td>
+						<td>Cargo</td>
+						<td>Telefono</td>
+						<td>Correo</td>
+						<td>Celular</td>
 					</tr>
 					<tr v-for="cont in nuevoServicio.contactos">
 						<td>
@@ -73,8 +75,10 @@
 							</button>
 						</td>
 						<td v-text="cont.nombre"></td>
-						<td v-text="cont.tipo"></td>
-						<td v-text="cont.dato"></td>
+						<td v-text="cont.cargo"></td>
+						<td v-text="cont.telefono"></td>
+						<td v-text="cont.correo"></td>
+						<td v-text="cont.celular"></td>
 					</tr>
 				</table>
 
@@ -87,8 +91,12 @@
 
 				<table id="t1" class="table table-condensed">
 					<tr>
+						<td></td>
 						<td>Tipo</td>
 						<td>Cantidad</td>
+						<td>Tipo Turno</td>
+						<td>Horario Inicial</td>
+						<td>Horario Final</td>
 
 					</tr>
 					<tr v-for="elm in nuevoServicio.elementos">
@@ -100,6 +108,9 @@
 
 						<td v-text="elm.tipo"></td>
 						<td v-text="elm.cantidad"></td>
+						<td v-text="elm.tipo_turno"></td>
+						<td v-text="elm.horario1"></td>
+						<td v-text="elm.horario2"></td>
 					</tr>
 				</table>
 

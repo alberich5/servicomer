@@ -223,10 +223,6 @@
 	@include('comercializacion.modals.editarModalidad')
 
 
-
-
-
-
 </div>
 
 @endsection
@@ -317,6 +313,8 @@ resultado.innerText =  "Formato: " + valido;
 							{id:'3', nombre:'MATIAS ROMERO'},
 							{id:'3', nombre:'TUXTEPEC'},
 							{id:'4', nombre:'HUAJUAPAM DE LEON'},
+							{id:'4', nombre:'PUERTO ESCONDIDO'},
+							{id:'4', nombre:'JUCHITAN'},
 				],
 				tipo_contra:[{id:'1', nombre:'PRIVADA'},
 							{id:'2', nombre:'ESTATAL'},
@@ -339,6 +337,55 @@ resultado.innerText =  "Formato: " + valido;
 				],
 				giro:[{id:'1', nombre:'ESCOLTA'},
 				],
+				modalidad:[{id:'1', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR MES', precio:'13,632'},
+		                    {id:'2', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 15 DIAS', precio:'7,131'},
+		                    {id:'3', nombre:'CON UN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 1 MES', precio:'14,588'},
+		                    {id:'4', nombre:'CON UN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 15 DIAS', precio:'7,718'},
+		                    {id:'5', nombre:'CON UN ARMA, POR ELEMENTO, MAS RELEVO EN UN TURNO DE 12 HRS POR MES', precio:'29,176'},
+		                    {id:'6', nombre:'DE OFICIALIDAD CON UN ARMA, POR ELEMENTO EN UN TURNO DE 12 HRS POR 1 MES', precio:'16,745'},
+		                    {id:'7', nombre:'DE OFICIALIDAD CON UN ARMA, POR ELEMENTO EN UN TURNO DE 12 HRS POR 1 SEMANA' , precio:'4,423'},
+		                    {id:'8', nombre:'ESCOLTA CON UN ARMA POR ELEMENTO EN UN TURNO DE 12 HRS, POR 1 MES', precio:'19,048'},
+		                    {id:'9', nombre:'ESCOLTA CON UN ARMA POR ELEMENTO EN UN TURNO DE 12 HRS, POR 1 SEMANA', precio:'5,028'},
+												{id:'9', nombre:'ESCOLTA CON VEHICULO DE MOTOR CON DOS ELEMENTOS ARMADOSA BORDO, EN UN TURNO DE 12 HRS POR 1 MES', precio:'72,127'},
+		    ],
+				firstOptions: null,
+								secondOption: null,
+								list: {
+								  'SEGURIDAD Y VIGILANCIA': [
+									  { id:'1',tipo_servicio:'SIN ARMA POR ELEMENTO EN UN TURNO DE 12HRS, POR 1 MES', precio:'13,632.00' },
+									  { id:'1',tipo_servicio:'SIN ARMA POR ELEMENTO EN UN TURNO DE 12HRS, POR 15 DIAS', precio:'7,131.00'},
+									  { id:'1',tipo_servicio:'CON 1 ARMA POR ELEMENTO EN UN TURNO DE 12HRS, POR 1 MES', precio:'14,588.00'},
+									  { id:'1',tipo_servicio:'CON 1 ARMA POR ELEMENTO EN UN TURNO DE 12HRS, POR 15 DIAS', precio:'7,718.00'},
+									  { id:'1',tipo_servicio:'CON 1 ARMA POR ELEMENTO, MAS RELEVO EN UN TURNO DE 12 HRS POR 1 MES', precio:'29,176.00'},
+									  { id:'1',tipo_servicio:'DE OFICIALIDAD CON UN ARMA, POR ELEMENTO EN UN TURNO DE 12HRS, POR 1 MES', precio:'16,745.00'},
+									  { id:'1',tipo_servicio:'DE OFICIALIDAD CON UN ARMA, POR ELEMETO EN UN TURNO DE 12 HRS, POR 1 SEMANA', precio:'4,423.00'},
+									  { id:'1',tipo_servicio:'ESCOLTA, CON UN ARMA POR ELEMETO EN UN TURNO DE 12 HRS, POR 1 MES', precio:'19,048.00' },
+									  { id:'1',tipo_servicio:'ESCOLTA CON UN ARMA POR ELEMENTO EN UN TURNO DE 12 HRS, POR 1 SEMANA', precio:'5,028.00' },
+									  { id:'1',tipo_servicio:'ESCOLTA CON VEHICULO DE MOTOR CON DOS ELEMENTOS ARMADOS A BORDO, EN UN TURNO DE 12HRS POR 1 MES', precio:'72,127.00' },
+									  { id:'1',tipo_servicio:'ESCOLTA CON VEHICULO DE MOTOR CON DOS ELELEMTOS ARMADOS A BORDO, EN UN TURNO DE 12HRS POR 1 SEMANA', precio:'18,415.00' },
+									  { id:'1',tipo_servicio:'ESCOLTA CON VEHICULO DE MOTOR CON DOS ELELEMTOS ARMADOS A BORDO, MAS RELEVOS, TURNO DE 24HRS POR MES', precio:'144,255.00' },
+									  { id:'1',tipo_servicio:'CON MOTOCICLETA, DOS ELELEMTOS ARMADOS A BORDO EN UN TURNO DE 12HRS, POR 1 MES', precio:'49,650.00' },
+									  { id:'1',tipo_servicio:'CON MOTOCICLETA Y DOS ELEMENTOS ARMADOS A BORDO EN UN TURNO DE 12HRS, POR 1 SEMANA', precio:'12,638.00' },
+									  { id:'1',tipo_servicio:'CON CUATRIMOTO Y DOS ELEMETOS ARMADOS A BORDO EN UN TURNO DE 12HRS, POR 1 MES', precio:'63,190.00' },
+								  ],
+								  'POR OTROS SERVICIOS': [
+									  {id:'2', tipo_servicio:'POR ELEMENTO POR 1 MES', precio:'2,076.00'},
+									  {id:'2', tipo_servicio:'ARMA ADICIONAL POR 1 MES', precio:'1,715.00'}
+								  ],
+								  'VIGILANCIA ADMINISTRATIVA': [
+									  {id:'3', tipo_servicio:'SIN ARMA, POR UN ELEMENTO POR UN TURNO DE 12HRS, POR 1 MES', precio:'12,547.00'},
+									  {id:'3', tipo_servicio:'SIN ARMA, POR UN ELEMENTO POR UN TURNO DE 12HRS, POR 15 DIAS', precio:'6,499.00'}
+								  ],
+								  'SEGURIDAD Y VIGILANCIA ESPECIALES': [
+									  {id:'4', tipo_servicio:'POR ELEMENTO SIN ARMA, POR 6 HORAS', precio:'587.00'},
+									  {id:'4', tipo_servicio:'POR ELEMENTO CON ARMA, POR 6 HORAS', precio:'767.00'},
+									  {id:'4', tipo_servicio:'POR ELEMENTO DE ESCOLTA CON ARMA, POR 6 HORAS', precio:'1,941.00'},
+									  {id:'4', tipo_servicio:'CON VEHICULO DE MOTOR DENTRO DE LA CIUDAD CON DOS ELEMENTOS A BORDO, POR 6 HORAS', precio:'4,153.00'},
+									  {id:'4', tipo_servicio:'CON VEHICULO DE MOTOR DENTRO DE LA CIUDAD PERO DENTRO DEL TERRITORIO DEL ESTADO, CON DOS ELEMENTOS A BORDO Y ARMADOS, POR 12 HRS', precio:'16,249.00'},
+									  {id:'4', tipo_servicio:'CON MOTOCICLETA DOS ELEMENTOS A BORDO, POR 6HRS', precio:'2,166'},
+									  {id:'4', tipo_servicio:'MONITOREO A TRAVES DE CIRCUITO CERRADO, POR 1 CAMARA POR 1 MES', precio:'2,257.00'}
+								  ]
+								},
 				prueba:'prueba',
 				clienteVer:{razon_social:'',nombre_comercial:'',domicilio_fiscal:'', estatus:''},
 
@@ -475,9 +522,11 @@ resultado.innerText =  "Formato: " + valido;
                         });
 											}//fin del else
 
+
+
 				},
 				storeContacto:function(){
-					if(this.nuevoContacto.nombre=="" || this.nuevoContacto.dato=="" )
+					if(this.nuevoContacto.nombre=="" )
                     {
                     	toastr.error("Todos los campos son necesarios");//mensaje flotante
                     }
@@ -485,7 +534,7 @@ resultado.innerText =  "Formato: " + valido;
                       var taman=this.nuevoServicio.contactos.length;
                       this.nuevoContacto.id=taman+1;
                       this.nuevoServicio.contactos.push(this.nuevoContacto);
-                      this.nuevoContacto={id:'',nombre:'',tipo:'',dato:''};
+                      this.nuevoContacto={id:'',nombre:'',tipo:'',telefono:'',correo:'',celular:''};
                     $('#agregarContacto').modal('toggle');
                         }
 				},

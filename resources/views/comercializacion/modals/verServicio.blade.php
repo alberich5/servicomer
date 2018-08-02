@@ -26,13 +26,19 @@
 						</td>
 						</tr>
 						<tr>
+						<td>Razon Social</td>
+						<td>
+							<label v-text="mostrarServicio.razon_social"></label>
+						</td>
+						</tr>
+						<tr>
 						<td>Analisis de riesgo</td>
 						<td>
 							<label v-text="mostrarServicio.analisis"></label>
 						</td>
 						</tr>
 						<tr>
-						<td>Nombre comercial</td>
+						<td>Sucursal u Oficina</td>
 						<td>
 							<label v-text="mostrarServicio.nombre_comercial"></label>
 						</td>
@@ -86,7 +92,9 @@
 									<td>Opciones</td>
 									<td>Nombre</td>
 									<td>Tipo</td>
-									<td>Dato</td>
+									<td>Telefono</td>
+									<td>Correo</td>
+									<td>Celular</td>
 								</tr>
 								<tr v-for="cont in mostrarServicio.contactos">
 									<td>
@@ -96,7 +104,9 @@
 									</td>
 									<td v-text="cont.nombre"></td>
 									<td v-text="cont.tipo"></td>
-									<td v-text="cont.dato"></td>
+									<td v-text="cont.telefono"></td>
+									<td v-text="cont.correo"></td>
+									<td v-text="cont.celular"></td>
 								</tr>
 							</table>
 						</td>

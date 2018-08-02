@@ -85,7 +85,10 @@ class ServicioController extends Controller
                   $contacto=new ComercializacionServicioContacto;
                   $contacto->nombre=strtoupper($contactos[$i]['nombre']);
                   $contacto->tipo=strtoupper($contactos[$i]['tipo']);
-                  $contacto->dato=$contactos[$i]['dato'];
+                  $contacto->cargo=$contactos[$i]['cargo'];
+                  $contacto->telefono=$contactos[$i]['telefono'];
+                  $contacto->correo=$contactos[$i]['correo'];
+                  $contacto->celular=$contactos[$i]['celular'];
                   $contacto->id_departamento=2;
                   $contacto->id_servicio=$servicio->id;
                   $contacto->save();
@@ -93,10 +96,11 @@ class ServicioController extends Controller
               $elementos=$request['servicio']['elementos'];
               for ($i=0; $i < sizeof($elementos); $i++) {
                   for ($j=0; $j < $elementos[$i]['cantidad']; $j++) {
+                  $horas=$elementos[$i]['horario1'].' a '.$elementos[$i]['horario2'];
                   $elemento=new ComercializacionServicioElemento;
                   $elemento->tipo_turno=strtoupper($elementos[$i]['tipo_turno']);
                   $elemento->tipo=strtoupper($elementos[$i]['tipo']);
-                  $elemento->horario=strtoupper($elementos[$i]['horario']);
+                  $elemento->horario=$horas;
                   $elemento->id_servicio=$servicio->id;
                   $elemento->save();
                   }

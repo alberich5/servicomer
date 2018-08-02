@@ -15,15 +15,19 @@
 				<label for="registro">Cargo</label>
 				<input type="text" class="form-control" v-model="nuevoContacto.cargo" required style="text-transform: uppercase;">
 
-				<label>Tipo</label><br>
+				<!--<label>Tipo</label><br>
 				<select v-model="nuevoContacto.tipo" class="form-control" id="sel1">
 				        <option>Telefono</option>
 				        <option>Correo</option>
 				        <option>Celular</option>
-				      	</select><br>
+				      	</select><br>-->
 
-				<label>Dato</label><br>
-				<input type="text" class="form-control" name="" v-model="nuevoContacto.dato" required style="text-transform: uppercase;">
+				<label>Telefono</label><br>
+				<input type="text" class="form-control" name="" v-model="nuevoContacto.telefono"  style="text-transform: uppercase;">
+				<label>Correo</label><br>
+				<input type="text" class="form-control" name="" v-model="nuevoContacto.correo">
+				<label>celular</label><br>
+				<input type="text" class="form-control" name="" v-model="nuevoContacto.celular"  style="text-transform: uppercase;">
 
 
 			</div>

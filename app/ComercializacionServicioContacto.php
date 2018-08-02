@@ -15,7 +15,9 @@ class ComercializacionServicioContacto extends Model
     'id_servicio',
     'nombre',
     'tipo',
-    'dato',
-    'id_area'
+    'cargo',
+    'telefono',
+    'correo',
+    'celular'
   ];
 }

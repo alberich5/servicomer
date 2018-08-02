@@ -11,10 +11,11 @@
 			<div class="modal-body">
 
 				<label>Tipo</label><br>
-				<select class="form-control" id="elemento" v-model="nuevoElemento.tipo" required style="text-transform: uppercase;">
-				        	<option>ESCOLTA</option>
-
-				      	</select><br>
+								<select class="form-control" v-model="nuevoElemento.tipo">
+				                        <option v-for="mo in modalidad" v-bind:value="mo.nombre" class="lista">
+				                          @{{ mo.nombre}}  $@{{ mo.precio}}
+				                        </option>
+				        </select>
 
 				<label>Cantidad Elementos</label><br>
 				<input type="number" class="form-control" v-model="nuevoElemento.cantidad"><br>
@@ -25,8 +26,10 @@
 				      <option>12x12</option>
 				</select><br>
 
-				<label for="registro">Horario</label>
-				<input type="text" class="form-control" v-model="nuevoElemento.horario" required style="text-transform: uppercase;"><br>
+				<label for="registro">Horario Inicial</label>
+				<input type="time" class="form-control" v-model="nuevoElemento.horario1" ><br>
+				<label for="registro">Horario Final</label>
+				<input type="time" class="form-control" v-model="nuevoElemento.horario2" ><br>
 
 
 			</div>
