@@ -28,21 +28,12 @@
 				<label>Domicilio Notificacion</label><br>
 				<input type="text" class="form-control" v-model="editarCliente.domicilio_notificacion"><br>
 
-				<label>Estatus</label><br>
-				<select class="form-control" v-model="editarCliente.estatus">
-					<option>Activo</option>
-					<option>Inactivo</option>
-				</select><br>
-
-
-
-
 			</div>
 
 
 
 			<div class="modal-footer">
-				<button type="" class="btn btn-primary" value="Guardar" v-on:click="" >
+				<button type="" class="btn btn-primary" value="Guardar" v-on:click="updateCliente()" >
              <span class="glyphicon glyphicon-ok-circle"></span>
              Aceptar
                 </button>

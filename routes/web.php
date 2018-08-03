@@ -108,6 +108,8 @@ Route::get('comercializacion/', 'comercializacion\ClienteController@index')->nam
 Route::post('comercializacion/cliente/search',['uses'=> 'comercializacion\ClienteController@search', 'as'=> 'comercializacion.cliente.search']);
 
 Route::post('comercializacion/cliente/store',['uses'=> 'comercializacion\ClienteController@store', 'as'=> 'comercializacion.cliente.store']);
+//Actualizar cliente
+Route::post('comercializacion/cliente/actualizar',['uses'=> 'comercializacion\ClienteController@actualizar', 'as'=> 'comercializacion.cliente.actualizar']);
 
 
 

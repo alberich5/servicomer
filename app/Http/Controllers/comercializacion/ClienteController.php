@@ -74,7 +74,7 @@ class ClienteController extends Controller
             $clientes=ComercializacionCliente::where('razon_social','like','%'.strtoupper($request['cliente']['razon_social']).'%')
             ->where('nombre_comercial','like','%'.strtoupper($request['cliente']['nombre_comercial']).'%')
             ->select('id','razon_social','estatus')
-            ->paginate(10);
+            ->paginate(15);
             }
 
 
@@ -128,6 +128,28 @@ class ClienteController extends Controller
     {
         //
     }
+    public function actualizar(Request $request)
+    {
+        $informacion=['error'=>false, 'resultado' => ''];
+
+          try{
+            $cliente=ComercializacionCliente::findOrFail($request['cliente']['id']);
+            $cliente->razon_social=$request['cliente']['razon_social'];
+            $cliente->domicilio_fiscal=$request['cliente']['domicilio_fiscal'];
+            $cliente->nombre_comercial=$request['cliente']['nombre_comercial'];
+            $cliente->giro=$request['cliente']['giro'];
+            $cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
+            $cliente->domicilio_notificacion=$request['cliente']['domicilio_notificacion'];
+            $cliente->update();
+            $informacion['resultado']='La actualizacion del cliente  fue exitoso';
+          }
+          catch(\Exception $e) {
+              $informacion['error']=true;
+              $informacion['resultado']='Registro de datos incorrecto, reporte añadido a SISTEMAS';
+          }
+          return $informacion;
+    }
+
 
     /**
      * Store a newly created resource in storage.

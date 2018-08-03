@@ -203,12 +203,12 @@
     </div>
 
 
-	<!---<div class="col-sm-12">
+<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
 		</pre>
-	</div>-->
+	</div>
 
 	@include('comercializacion.modals.crearCliente')
 	@include('comercializacion.modals.agregarServicio')
@@ -334,6 +334,10 @@ resultado.innerText =  "Formato: " + valido;
 												{id:'7', nombre:'CONSTRUCCION/FERRETERO/CEMENTO'},
 												{id:'8', nombre:'ESCOLTA/PARTICULAR/EVENTOS SOCIALES'},
 												{id:'9', nombre:'ESTATAL/CLINICAS HOSPITALES'},
+												{id:'10', nombre:'FABRICAS/DISTRIBUIDORAS DE MAQ. E INSUMOS'},
+												{id:'11', nombre:'FINANCIERA/CASAS EMPEÑO/CAJAS AHORRO'},
+												{id:'12', nombre:'INGENIOS/ASERRADEROS/MINAS'},
+												{id:'13', nombre:'OFICINAS/ASOCIACIONES/DESPACHOS/CONSULTORIAS'},
 				],
 				giro:[{id:'1', nombre:'ESCOLTA'},
 				],
@@ -486,6 +490,20 @@ resultado.innerText =  "Formato: " + valido;
 						this.search();
 				},
 				showDelegaciones:function(){
+
+				},
+				updateCliente:function(){
+					var url= 'comercializacion/cliente/actualizar';
+					axios.post(url,{
+													cliente:this.editarCliente
+											}).then(response=>{
+												this.showAlerts(response.data);
+												$('#editarCliente').modal('hide');
+												this.editarCliente={};
+											}).catch(error=>{
+											});
+
+
 
 				},
 				editarContacto:function(){
