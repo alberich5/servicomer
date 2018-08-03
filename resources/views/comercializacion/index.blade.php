@@ -302,6 +302,10 @@ resultado.innerText =  "Formato: " + valido;
 				nuevoCliente:{num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',domicilio_fiscal:'',domicilio_fiscal:'',rfc:'',giro:'',cargo:'',notificacion:'',id_delegacion:'',tipo_contrato:'',replegal:''},
 				nuevoElemento:{id:'',tipo:'',cantidad:'',tipo_turno:'',horario:''},
 				nuevoContacto:{id:'',nombre:'',tipo:'',dato:''},
+				id_contacto:'',
+				id_modalidad:'',
+				editContacto:{},
+				editModalidad:{},
 				clientes:[],
 				nuevoServicio:{id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
 				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
@@ -503,18 +507,61 @@ resultado.innerText =  "Formato: " + valido;
 												this.search();
 											}).catch(error=>{
 											});
+				},
+				updateContacto:function(){
+						var url= 'comercializacion/servicio/actualizarconta';
+						axios.post(url,{
+														contacto:this.editContacto
+												}).then(response=>{
+													this.showAlerts(response.data);
+													$('#editarContacto').modal('hide');
 
+												}).catch(error=>{
+												});
+				},
+				updateModalidad:function(){
+					var url= 'comercializacion/servicio/actualizarmodalidad';
+					axios.post(url,{
+													modalidad:this.editModalidad
+											}).then(response=>{
+												this.showAlerts(response.data);
+												$('#editarModalidad').modal('hide');
 
+											}).catch(error=>{
+											});
+				},
+				editarContacto:function(id){
+					this.editContacto={};
+					var url= 'comercializacion/contacto/search';
+					this.id_contacto=id;
+					axios.post(url,{
+													contacto:this.id_contacto
+											}).then(response=>{
+												this.editContacto=response.data
+												$('#editarContacto').modal('show');
+											}).catch(error=>{
+											});
 
 				},
-				editarContacto:function(){
-						$('#editarContacto').modal('show');
-				},
-				editarModalidad:function(){
-						$('#editarModalidad').modal('show');
+				editarModalidad:function(id){
+					this.editModalidad={};
+					var url= 'comercializacion/modalidad/search';
+					this.id_modalidad=id;
+					axios.post(url,{
+													modalidad:this.id_modalidad
+											}).then(response=>{
+												this.editModalidad=response.data
+												$('#editarModalidad').modal('show');
+											}).catch(error=>{
+											});
+
+
+
 				},
 
 				addServicio:function(id){
+
+					this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
 					this.nuevoServicio.id_cliente=id;
 					$('#agregarServicio').modal('show');
 				},
@@ -535,7 +582,7 @@ resultado.innerText =  "Formato: " + valido;
                             servicio:this.nuevoServicio
                         }).then(response=>{
                         	this.showAlerts(response.data);
-
+				//$this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
 							$('#agregarServicio').modal('toggle');
                         }).catch(error=>{
                         });

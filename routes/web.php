@@ -112,7 +112,6 @@ Route::post('comercializacion/cliente/store',['uses'=> 'comercializacion\Cliente
 Route::post('comercializacion/cliente/actualizar',['uses'=> 'comercializacion\ClienteController@actualizar', 'as'=> 'comercializacion.cliente.actualizar']);
 
 
-
 Route::post('comercializacion/cliente/show',['uses'=> 'comercializacion\ClienteController@show', 'as'=> 'comercializacion.cliente.show']);
 
 Route::post('comercializacion/cliente/servicios/show',['uses'=> 'comercializacion\ClienteController@showHistorial', 'as'=> 'comercializacion.cliente.showHistorial']);
@@ -122,12 +121,19 @@ Route::post('comercializacion/servicio/show',['uses'=> 'comercializacion\Servici
 
 Route::post('comercializacion/servicio/store',['uses'=> 'comercializacion\ServicioController@store', 'as'=> 'comercializacion.servicio.store']);
 
-
-
-
+//actualizar contacto
+Route::post('comercializacion/servicio/actualizarconta',['uses'=> 'comercializacion\ServicioController@actualizarconta', 'as'=> 'comercializacion.servicio.actualizarconta']);
+//actualizar modalidad
+Route::post('comercializacion/servicio/actualizarmodalidad',['uses'=> 'comercializacion\ServicioController@actualizarmodalidad', 'as'=> 'comercializacion.servicio.actualizarmodalidad']);
+//buscar $contactos
+Route::post('comercializacion/contacto/search',['uses'=> 'comercializacion\ServicioController@searchContacto', 'as'=> 'comercializacion.contacto.search']);
+//buscar MOdalidad
+Route::post('comercializacion/modalidad/search',['uses'=> 'comercializacion\ServicioController@searchModalidad', 'as'=> 'comercializacion.modalidad.search']);
+//pruebas
 Route::get('prueba',['uses'=> 'comercializacion\ServicioController@prueba', 'as'=> 'comercializacion.servicio.store']);
 
-
+//Juridico
+Route::get('juridico/', 'juridico\ContratoController@index')->name('juridico.contrato.index');
 
 
 

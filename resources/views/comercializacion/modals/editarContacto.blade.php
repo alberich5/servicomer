@@ -1,4 +1,4 @@
-<form method="POST" v-on:submit.prevent="store">
+
 <div class="modal fade" id="editarContacto" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -11,22 +11,25 @@
 			<div class="modal-body">
 				<!---razon social-->
 				<label for="registro">Nombre</label>
-				<input type="text" class="form-control" v-model="mostrarServicio.nombre_comercial" >
-				<!---domiciolio fiscal-->
+				<input type="text" class="form-control" v-model="editContacto.nombre" >
+				<!---cargo-->
+				<label for="registro">Cargo</label>
+				<input type="text" class="form-control" v-model="editContacto.cargo" >
+				<!---telefono-->
 				<label for="registro">Telefono</label>
-				<textarea  class="form-control" ></textarea>
+				<input type="text" class="form-control" v-model="editContacto.telefono" >
 				<!---Correo-->
 				<label for="registro">Correo</label>
-				<input type="text" class="form-control" >
+				<input type="text" class="form-control" v-model="editContacto.correo">
 				<!---Celular-->
 				<label for="registro">Celular</label>
-				<input type="text" class="form-control" >
+				<input type="text" class="form-control" v-model="editContacto.celular">
 
 
 
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary" value="Aceptar">
+				<button type="submit" class="btn btn-primary" value="Aceptar" v-on:click="updateContacto()">
              <span class="glyphicon glyphicon-ok-sign"></span>
              Aceptar
         </button>
@@ -40,4 +43,3 @@
 		</div>
 	</div>
 </div>
-</form>

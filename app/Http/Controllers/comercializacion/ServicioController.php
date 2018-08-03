@@ -192,85 +192,70 @@ class ServicioController extends Controller
     {
         //
     }
+    public function actualizarconta(Request $request)
+    {
+        $informacion=['error'=>false, 'resultado' => ''];
+
+          try{
+          $contacto=ComercializacionServicioContacto::findOrFail($request['contacto']['id']);
+          $contacto->nombre=$request['contacto']['nombre'];
+          $contacto->cargo=$request['contacto']['cargo'];
+          $contacto->telefono=$request['contacto']['telefono'];
+          $contacto->correo=$request['contacto']['correo'];
+          $contacto->celular=$request['contacto']['celular'];
+          $contacto->update();
+
+            $informacion['resultado']='La actualizacion del Contacto fue exitoso';
+          }
+          catch(\Exception $e) {
+              $informacion['error']=true;
+              $informacion['resultado']='Registro de datos incorrecto, reporte añadido a SISTEMAS';
+          }
+          return $informacion;
+    }
+    public function actualizarmodalidad(Request $request)
+    {
+        $informacion=['error'=>false, 'resultado' => ''];
+
+          try{
+          $modalidad=ComercializacionServicioElemento::findOrFail($request['modalidad']['id']);
+          $modalidad->tipo=$request['modalidad']['tipo'];
+          $modalidad->tipo_turno=$request['modalidad']['tipo_turno'];
+          $modalidad->horario=$request['modalidad']['horario'];
+          $modalidad->update();
+
+            $informacion['resultado']='Se Actualizo la Modalidad fue exitoso';
+          }
+          catch(\Exception $e) {
+              $informacion['error']=true;
+              $informacion['resultado']='Registro de datos incorrecto, reporte añadido a SISTEMAS';
+          }
+          return $informacion;
+    }
+    //mostrar la informacion del contacto buscado searchModalidad
+    public function searchContacto(Request $request)
+    {
+      $contacto=ComercializacionServicioContacto::where('id',$request['contacto'])
+          ->first();
+      return $contacto;
+    }
+
+    //mostrar la informacion del modalidad
+    public function searchModalidad(Request $request)
+    {
+      $modalidad=ComercializacionServicioElemento::where('id',$request['modalidad'])
+          ->first();
+      return $modalidad;
+
+    }
 
     public function prueba(Request $request)
     {
 
-      $request['servicio']=array(  "id_cliente"=>12,        "nombre_comercial"=> "rfgdef",
-          "domicilio"=> "vgeswdgwed",
-          "municipio"=> "gswe",
-          "giro"=> "sdgviodngoi",
-          "riesgo"=> "dfghdfh",
-          "id_delegacion"=> "1",
-          "fecha_contratacion"=> "2018-08-02",
-          "observacion"=> "sdgsdgdsg",
-          "contactos"=>array(
-            array( "id"=> 1,
-              "nombre"=> "sdgsdg",
-              "tipo"=> "Telefono",
-              "dato"=> "sdgsdgds",
-              "cargo"=> "sdgsdsdg")
-            ),
-          "elementos"=> array(array(   "id"=> 1,
-            "tipo"=> "ESCOLTA",
-            "cantidad"=> "4",
-            "tipo_turno"=> "24x24",
-            "horario"=> "kswlrk",
-          "id_cliente"=> 12))
-        );
-        $informacion=['error'=>false, 'resultado' => ''];
-
-        //contrato
-         $comerContrato=new ComercializacionContrato;
-         $comerContrato->observacion="Contrato comercializa";
-         $comerContrato->save();
-         $ultimocontrato = ComercializacionContrato::orderBy('id', 'desc')->first();
-
-
-           $servicio=new ComercializacionServicio;
-            $servicio->id_cliente=$request['servicio']['id_cliente'];
-            $servicio->id_contrato=$ultimocontrato->id;
-            $servicio->nombre_comercial=strtoupper($request['servicio']['nombre_comercial']);
-            $servicio->domicilio=strtoupper($request['servicio']['domicilio']);
-            $servicio->municipio=strtoupper($request['servicio']['municipio']);
-            $servicio->giro=strtoupper($request['servicio']['giro']);
-            $servicio->tipo=strtoupper('normal');
-            $servicio->observacion=strtoupper($request['servicio']['observacion']);
-            $servicio->id_delegacion=strtoupper($request['servicio']['id_delegacion']);
-            $servicio->fecha=$request['servicio']['fecha_contratacion'];
-            $servicio->save();
-
-
-            //aqui se agrega la solicitud
-            $solicitudServicio=new analisis_riesg_solicitud_servicio;
-             $solicitudServicio->id_servicio=$servicio->id;
-             $solicitudServicio->save();
-
-            $contactos=$request['servicio']['contactos'];
-        //  for ($i=0; $i < sizeof($contactos); $i++) {
-                $contacto=new ComercializacionServicioContacto;
-                $contacto->nombre=$contactos[0]['nombre'];
-                $contacto->tipo=$contactos[0]['tipo'];
-                $contacto->dato=$contactos[0]['dato'];
-                $contacto->id_departamento=2;
-                $contacto->id_servicio=$servicio->id;
-                $contacto->save();
-          //  }
-
-            $elementos=$request['servicio']['elementos'];
-          //  for ($i=0; $i < sizeof($elementos); $i++) {
-              //  for ($j=0; $j < $elementos[$i]['cantidad']; $j++) {
-                $elemento=new ComercializacionServicioElemento;
-                $elemento->tipo_turno=$elementos[0]['tipo_turno'];
-                $elemento->tipo=$elementos[0]['tipo'];
-                $elemento->horario=$elementos[0]['horario'];
-                $elemento->id_servicio=$servicio->id;
-                $elemento->save();
-              //  }
-          //  }
-
-return $elemento;
-
+      //$modalidad=ComercializacionServicioElemento::findOrFail('31');
+      //$modalidad->horario='01:00 a 08:00';
+      //$modalidad->update();
+      //dd("se guardo");
 
     }
 

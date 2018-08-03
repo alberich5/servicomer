@@ -1,4 +1,4 @@
-<form method="POST" v-on:submit.prevent="store">
+
 <div class="modal fade" id="editarModalidad" data-backdrop="static">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -11,20 +11,20 @@
 			<div class="modal-body">
 				<!---razon social-->
 				<label for="registro">Tipo</label>
-				<input type="text" class="form-control" >
+				<input type="text" class="form-control" v-model="editModalidad.tipo">
 				<!---Tipo Horario-->
 				<label for="registro">Tipo Horario</label>
-        <input type="text" class="form-control" >
+        <input type="text" class="form-control" v-model="editModalidad.tipo_turno">
 				<!---Horario-->
 				<label for="registro">Horario</label>
-				<input type="text" class="form-control" >
+				<input type="text" class="form-control" v-model="editModalidad.horario">
 
 
 
 
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary" value="Aceptar">
+				<button type="submit" class="btn btn-primary" value="Aceptar" v-on:click="updateModalidad()">
              <span class="glyphicon glyphicon-ok-sign"></span>
              Aceptar
         </button>
@@ -38,4 +38,3 @@
 		</div>
 	</div>
 </div>
-</form>
