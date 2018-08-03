@@ -500,6 +500,7 @@ resultado.innerText =  "Formato: " + valido;
 												this.showAlerts(response.data);
 												$('#editarCliente').modal('hide');
 												this.editarCliente={};
+												this.search();
 											}).catch(error=>{
 											});
 
