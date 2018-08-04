@@ -280,6 +280,7 @@ resultado.innerText =  "Formato: " + valido;
 			el: '#crud',
 			created: function(){
 				this.showDelegaciones();
+				this.search2();
 			},
 
 			data:{
@@ -292,6 +293,7 @@ resultado.innerText =  "Formato: " + valido;
 				editContacto:{},
 				editModalidad:{},
 				clientes:[],
+				contrato:{tipoContrato:'', numeroContrato:''},
 				nuevoServicio:{id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
 				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
 				editarCliente:{},

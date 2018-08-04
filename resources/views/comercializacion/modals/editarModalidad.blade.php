@@ -24,7 +24,7 @@
 
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary" value="Aceptar" v-on:click="updateModalidad()">
+				<button type="submit" class="btn btn-primary" value="Aceptar" v-on:click="updateModalidad(editModalidad.id)">
              <span class="glyphicon glyphicon-ok-sign"></span>
              Aceptar
         </button>

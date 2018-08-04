@@ -506,25 +506,44 @@ resultado.innerText =  "Formato: " + valido;
 											}).catch(error=>{
 											});
 				},
-				updateContacto:function(){
+				updateContacto:function(id){
 						var url= 'comercializacion/servicio/actualizarconta';
 						axios.post(url,{
 														contacto:this.editContacto
 												}).then(response=>{
 													this.showAlerts(response.data);
 													$('#editarContacto').modal('hide');
+													this.editContacto={};
+													var url= 'comercializacion/contacto/search';
+													this.id_contacto=id;
+													axios.post(url,{
+																					contacto:this.id_contacto
+																			}).then(response=>{
+																				this.editContacto=response.data
+																				$('#verServicio').modal('hide');
+																			}).catch(error=>{
+																			});
 
 												}).catch(error=>{
 												});
 				},
-				updateModalidad:function(){
+				updateModalidad:function(id){
 					var url= 'comercializacion/servicio/actualizarmodalidad';
 					axios.post(url,{
 													modalidad:this.editModalidad
 											}).then(response=>{
 												this.showAlerts(response.data);
 												$('#editarModalidad').modal('hide');
-
+												this.editModalidad={};
+												var url= 'comercializacion/modalidad/search';
+												this.id_modalidad=id;
+												axios.post(url,{
+																				modalidad:this.id_modalidad
+																		}).then(response=>{
+																			this.editModalidad=response.data
+																			$('#verServicio').modal('hide');
+																		}).catch(error=>{
+																		});
 											}).catch(error=>{
 											});
 				},

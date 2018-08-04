@@ -139,12 +139,14 @@ class ClienteController extends Controller
             ->where('nombre_comercial','like','%'.strtoupper($request['cliente']['nombre_comercial']).'%')
             ->whereDate('fecha_alta','=',$request['cliente']['fecha'])
             ->select('id','razon_social','estatus')
+            //->orderBy('id','desc')
             ->paginate(10);
             }
             else{
             $clientes=ComercializacionCliente::where('razon_social','like','%'.strtoupper($request['cliente']['razon_social']).'%')
             ->where('nombre_comercial','like','%'.strtoupper($request['cliente']['nombre_comercial']).'%')
             ->select('id','razon_social','estatus')
+            //->orderBy('id','desc')
             ->paginate(10);
             }
 

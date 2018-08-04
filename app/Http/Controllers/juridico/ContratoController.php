@@ -5,6 +5,8 @@ namespace App\Http\Controllers\juridico;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ComercializacionContrato;
+use App\JuridicoArchivo;
+
 
 class ContratoController extends Controller
 {
@@ -14,6 +16,7 @@ class ContratoController extends Controller
   }
 
   public function subir(Request $request){
+
        //este metodo funciona bien esta en el controlador
 
 //tiene que coincidir con el nombre del input
@@ -25,29 +28,33 @@ class ContratoController extends Controller
          if($extension == 'pdf'){
 
             $nombre = uniqid()."-".$file->getClientOriginalName();
-            $path2= '/imagenes/';
+            $path2= '/imagenes/'.$nombre;
             $path = \Storage::disk('local')->put($nombre, \File::get($file)); // el path lo puedes mandar a la bd
             $fecha= date('Y-m-d');
 
-            /*$archivo=ClienteComerArchivos::create([
-            'tipo'=>$request->input('tipo'),
-            'ruta'=> $path2,
+            $archivo=JuridicoArchivo::create([
+
+            'num_contrato' => $request->input('num_contrato'),
+            'estatus'=> true,
             'fecha_alta'=> $fecha,
-            'nombre' => $nombre,
-        ]);*/
+            'ruta_archivo'=> $path2,
+            'tipo'=>$request->input('tipo')
+
+        ]);
 
 
-            $respuesta= "alert('exito');";
 
-            return $respuesta;
+        return redirect('juridico');
+            //return $respuesta;
         }
-        return 'el archivo no es un pdf';
+        //return 'el archivo no es un pdf';
+        return redirect('juridico');
         }
 
         $respuesta='a ocurrido un error o no a enviado nada';
 
-        return $respuesta;
-
+        //return $respuesta;
+        return redirect('juridico');
 
 
 }

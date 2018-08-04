@@ -17,17 +17,21 @@
 					      <tr>
 					        <td >Numero de contrato</td>
 					        <td>
-					        	<input type="text" class="form-control" placeholder="Numero de contrato" >
+					        	<input type="text" class="form-control" placeholder="Numero de contrato" v-model="contrato.numeroContrato">
 					        </td>
 					      </tr>
 					      <tr>
 					        <td>Tipo de contrato</td>
 					        <td>
-					        	<input type="text" class="form-control" placeholder="Tipo de contrato" >
+										<select v-model="contrato.tipoContrato" class="form-control">
+					        		<option value="privado">Privado</option>
+					        		<option value="publico">Publico</option>
+					        		<option value="federal">Federal</option>
+					        	</select>
 					        </td>
 					    	</tr>
 					      <tr>
-					        <td>Fecha de contratacion</td>
+					        <td>Fecha de inicio Contrato</td>
 					        <td>
 					        	<input type="date" class="form-control" placeholder="Fecha de contratacion" >
 					        </td>
@@ -46,9 +50,9 @@
 
 								{{ csrf_field() }}
 					        	<div class="col-sm-9">
-					        	<input type="hidden" id="tipo" name="tipo" value="contrato">
+					        	<input type="hidden" id="tipo" name="tipo"  v-model="contrato.tipoContrato">
 
-					        	<input type="hidden" id="id_servicio" name="id_servicio" >
+					        	<input type="hidden" id="num_contrato" name="num_contrato"  v-model="contrato.numeroContrato" >
 
 					        	<input type="file" class="form-control" name="file" accept="application/pdf" >
 					        	</div>
@@ -66,10 +70,7 @@
 			</div>
 
 			<div class="modal-footer">
-				<button class="btn btn-primary" data-dismiss="modal">
-					<span class="glyphicon glyphicon-ok-circle"></span>
-					Guardar
-				</button>
+				
 
 				<button class="btn btn-danger" data-dismiss="modal">
 					<span class="glyphicon glyphicon-remove-sign"></span>
