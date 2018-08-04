@@ -135,7 +135,6 @@ class ServicioController extends Controller
      */
     public function show(Request $request)
     {
-
         $informacion=['error'=>false, 'resultado' => ''];
         $contactos=array();
             $elementos=array();
@@ -143,8 +142,6 @@ class ServicioController extends Controller
         {
             $servicio=ComercializacionServicio::where('id',$request['id'])
                 ->first();
-
-
 
             if($servicio)
             {
@@ -181,6 +178,51 @@ class ServicioController extends Controller
         ];
     }
 
+    //busqueda de show2 para juridico
+    public function show2(Request $request)
+    {
+        $informacion=['error'=>false, 'resultado' => ''];
+        $contactos=array();
+            $elementos=array();
+        if($request['id']!='')
+        {
+            $servicio=ComercializacionServicio::where('id',$request['id'])
+                ->first();
+
+            if($servicio)
+            {
+             $informacion['resultado']='Ver detalle del servicio con el id: '.$servicio->id;
+             $contactos=ComercializacionServicioContacto::where('id_servicio',$servicio->id)
+                ->get();
+             $elementos=ComercializacionServicioElemento::where('id_servicio',$servicio->id)
+                ->get();
+            }
+            else
+            {
+             $informacion['error']=true;
+             $informacion['resultado']='Servicio no registrado';
+             $servicio=array();
+            }
+        }
+        else{
+            $informacion['error']=true;
+            $informacion['resultado']='Servicio no registrado';
+            $servicio=array();
+        }
+
+
+
+        $servicio['contactos']=$contactos;
+        $servicio['elementos']=$elementos;
+
+
+
+        return [
+
+            'resultados'=>$servicio,
+            'informacion'=>$informacion
+        ];
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -270,6 +312,6 @@ class ServicioController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }

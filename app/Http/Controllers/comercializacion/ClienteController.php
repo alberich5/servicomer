@@ -59,7 +59,7 @@ class ClienteController extends Controller
            // ->whereIn('estatus',array('Candidato Contratado','Candidato Historico'))
            // ->orderBy('id','asc')
             ->select('id','razon_social','estatus')
-            ->paginate(10);
+            ->paginate(3);
         }
         else{
             if($request['cliente']['fecha']!='')
@@ -68,13 +68,13 @@ class ClienteController extends Controller
             ->where('nombre_comercial','like','%'.strtoupper($request['cliente']['nombre_comercial']).'%')
             ->whereDate('fecha_alta','=',$request['cliente']['fecha'])
             ->select('id','razon_social','estatus')
-            ->paginate(10);
+            ->paginate(3);
             }
             else{
             $clientes=ComercializacionCliente::where('razon_social','like','%'.strtoupper($request['cliente']['razon_social']).'%')
             ->where('nombre_comercial','like','%'.strtoupper($request['cliente']['nombre_comercial']).'%')
             ->select('id','razon_social','estatus')
-            ->paginate(15);
+            ->paginate(3);
             }
 
 
@@ -91,6 +91,77 @@ class ClienteController extends Controller
                 $servicios=ComercializacionServicio::where('id_cliente','=',$clientes[$i]['id'])
                     ->where('estatus','=',true)
                     ->select('id','nombre_comercial')
+                    ->get();
+
+                $clientes[$i]['servicios']=$servicios;
+             }
+
+        }
+        else{
+            $informacion['error']=true;
+            $informacion['resultado']='La busqueda no arrojó ningun resultado';
+
+        }
+
+        return [
+            'pagination'=>[
+                'total'         =>$clientes->total(),
+                'current_page'  =>$clientes->currentPage(),
+                'per_page'      =>$clientes->perPage(),
+                'last_page'     =>$clientes->lastPage(),
+                'from'          =>$clientes->firstItem(),
+                'to'            =>$clientes->lastItem()
+            ],
+            'resultados'=>$clientes,
+            'informacion'=>$informacion
+        ];
+
+
+    }
+
+    //busqueda de juridico
+    public function search2(Request $request)
+    {
+        $informacion=['error'=>false, 'resultado' => ''];
+
+        if($request['cliente']['id']!='')
+        {
+            $clientes=ComercializacionCliente::where('id',$request['cliente']['id'])
+           // ->whereIn('estatus',array('Candidato Contratado','Candidato Historico'))
+           // ->orderBy('id','asc')
+            ->select('id','razon_social','estatus')
+            ->paginate(3);
+        }
+        else{
+            if($request['cliente']['fecha']!='')
+            {
+            $clientes=ComercializacionCliente::where('razon_social','like','%'.strtoupper($request['cliente']['razon_social']).'%')
+            ->where('nombre_comercial','like','%'.strtoupper($request['cliente']['nombre_comercial']).'%')
+            ->whereDate('fecha_alta','=',$request['cliente']['fecha'])
+            ->select('id','razon_social','estatus')
+            ->paginate(3);
+            }
+            else{
+            $clientes=ComercializacionCliente::where('razon_social','like','%'.strtoupper($request['cliente']['razon_social']).'%')
+            ->where('nombre_comercial','like','%'.strtoupper($request['cliente']['nombre_comercial']).'%')
+            ->select('id','razon_social','estatus')
+            ->paginate(3);
+            }
+
+
+        }
+
+
+
+        if(sizeof($clientes)!=0)
+        {
+            $informacion['resultado']='Busqueda realizada con éxito';
+            //recorremos el arreglo de clientes y agregamos sus servicios
+             for ($i=0; $i < sizeof($clientes) ; $i++) {
+                 # code...
+                $servicios=ComercializacionServicio::where('id_cliente','=',$clientes[$i]['id'])
+                    ->where('estatus','=',true)
+                    ->select('id','id_contrato','nombre_comercial')
                     ->get();
 
                 $clientes[$i]['servicios']=$servicios;

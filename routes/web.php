@@ -106,6 +106,7 @@ Route::post('/recursos/elemento/show',['uses'=> 'recursosHumanos\ElementoPolicia
 Route::get('comercializacion/', 'comercializacion\ClienteController@index')->name('comercializacion.cliente.index');
 
 Route::post('comercializacion/cliente/search',['uses'=> 'comercializacion\ClienteController@search', 'as'=> 'comercializacion.cliente.search']);
+Route::post('comercializacion/cliente/search2',['uses'=> 'comercializacion\ClienteController@search2', 'as'=> 'comercializacion.cliente.search2']);
 
 Route::post('comercializacion/cliente/store',['uses'=> 'comercializacion\ClienteController@store', 'as'=> 'comercializacion.cliente.store']);
 //Actualizar cliente
@@ -117,6 +118,7 @@ Route::post('comercializacion/cliente/show',['uses'=> 'comercializacion\ClienteC
 Route::post('comercializacion/cliente/servicios/show',['uses'=> 'comercializacion\ClienteController@showHistorial', 'as'=> 'comercializacion.cliente.showHistorial']);
 
 Route::post('comercializacion/servicio/show',['uses'=> 'comercializacion\ServicioController@show', 'as'=> 'comercializacion.servicio.show']);
+Route::post('comercializacion/servicio/show2',['uses'=> 'comercializacion\ServicioController@show2', 'as'=> 'comercializacion.servicio.show2']);
 
 
 Route::post('comercializacion/servicio/store',['uses'=> 'comercializacion\ServicioController@store', 'as'=> 'comercializacion.servicio.store']);
@@ -134,6 +136,9 @@ Route::get('prueba',['uses'=> 'comercializacion\ServicioController@prueba', 'as'
 
 //Juridico
 Route::get('juridico/', 'juridico\ContratoController@index')->name('juridico.contrato.index');
+Route::post('juridico/juridico/search',['uses'=> 'juridico\ContratoController@search', 'as'=> 'juridico.juridico.search']);
+
+Route::post('juridico/contrato/subir',['uses'=> 'juridico\ContratoController@subir', 'as'=> 'juridico.contrato.subir']);
 
 
 

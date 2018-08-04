@@ -49,10 +49,16 @@
           </a>
           <p>-Roles <br>-CRUD</p>
         </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <a href="{{ route('juridico.contrato.index') }}">
+          <img src="{{ asset('/img/menu/juridico.png') }}" class="rounded-circle img-fluid d-block mx-auto" title="Administrador" href="{{ route('juridico.contrato.index') }}">
+          </a>
+          <p>Juridico</p>
+        </div>
 
 
 
-		   
+
 
 
 

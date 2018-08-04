@@ -1,4 +1,4 @@
-@extends('comercializacion.layout')
+@extends('juridico.layout')
 
 @section('css')
 
@@ -13,9 +13,9 @@
 	</div>
 
 <!-- PANEL DE BUSQUEDA -->
- <form method="POST" id="formBusqueda" v-on:submit.prevent="search">
+ <form method="POST" id="formBusqueda" v-on:submit.prevent="search2">
 	 <div class="panel panel-primary">
-         <div class="panel-heading">BUSQUEDA POR CLIENTE: </div>
+         <div class="panel-heading">BUSQUEDA POR CLIENTE CONTRATO: </div>
 
 		 <div class="panel-body">
 		     <div class="col-sm-5">
@@ -93,7 +93,7 @@
 					<th>Opciones</th>
 					<th class="flechas" id="thId" @click="sort('id','thId')">ID</th>
 				    <th class="flechas" id="thRazonSocial" @click="sort('razon_social','thRazonSocial')">RAZON SOCIAL</th>
-				    <th class="flechas" id="thEstatus" @click="sort('estatus','thEstatus')">ESTATUS</th>
+				    <th class="flechas" id="thEstatus" @click="sort('estatus','thEstatus')">ESTATUS CONTRATO</th>
 				    <th class="flechas" id="thServicios" @click="sort('id','thServicios')">SERVICIOS</th>
 
 					</tr>
@@ -103,25 +103,9 @@
 <!-- BOTONES DE OPCIONES -->
 					<td>
 				        <div class="btn-group">
-				          <a v-on:click.prevent="addServicio(cliente.id)" class="btn btn-default ">
-				            <span class="hint--top" data-hint="Agregar Servicio">
-				            <span class="glyphicon glyphicon-plus"></span>
-				            </span>
-				          </a>
-
-				          <a href="#" class="btn btn-default" v-on:click.prevent="showClienteHistorial(cliente.id)">
-				            <span class="hint--top" data-hint="Historial Servicios">
-				              <span class="glyphicon glyphicon-list"></span>
-				            </span>
-				          </a>
-				          <a href="#" class="btn btn-default " v-on:click.prevent="editaCliente(cliente.id)">
-				            <span class="hint--top" data-hint="Editar">
-				              <span class="glyphicon glyphicon-pencil"></span>
-				            </span>
-				          </a>
 
 				           <a v-on:click.prevent="showCliente(cliente.id)" class="btn btn-default ">
-				            <span class="hint--top" data-hint="Ver detalle Servicio">
+				            <span class="hint--top" data-hint="Ver detalle Cliente">
 				            <span class="glyphicon glyphicon-eye-open"></span>
 				            </span>
 				          </a>
@@ -147,7 +131,7 @@
 				          <tbody >
 				            <tr  v-for="serv in cliente.servicios">
 				            	<td>
-				            		<a v-on:click.prevent="showServicio(serv.id)" class="btn btn-default ">
+				            		<a v-on:click.prevent="showServicio2(serv.id)" class="btn btn-default ">
 						            <span class="hint--top" data-hint="Ver detalle Servicio">
 						            <span class="glyphicon glyphicon-eye-open"></span>
 						            </span>
@@ -214,13 +198,14 @@
 	@include('comercializacion.modals.agregarServicio')
 	@include('comercializacion.modals.agregarContacto')
 	@include('comercializacion.modals.agregarElementos')
-	@include('comercializacion.modals.verCliente')
+	@include('juridico.modals.verCliente')
 	@include('comercializacion.modals.historialServicios')
-	@include('comercializacion.modals.verServicio')
+	@include('juridico.modals.verServicio')
 	@include('comercializacion.modals.editarCliente')
 	@include('comercializacion.modals.agregarArchivosCliente')
 	@include('comercializacion.modals.editarContacto')
 	@include('comercializacion.modals.editarModalidad')
+	@include('juridico.modals.agregarContrato')
 
 
 </div>
@@ -397,6 +382,9 @@ resultado.innerText =  "Formato: " + valido;
 				prueba:'prueba',
 				clienteVer:{razon_social:'',nombre_comercial:'',domicilio_fiscal:'', estatus:''},
 
+
+
+
 				//variables base
 				offset: 3,
 				currentSort:'id',
@@ -461,8 +449,8 @@ resultado.innerText =  "Formato: " + valido;
 			//metodos
 			methods: {
 
-				search: function(page){
-					var url= 'comercializacion/cliente/search?page='+page;
+				search2: function(page){
+					var url= 'comercializacion/cliente/search2?page='+page;
 
 						axios.post(url,{
                             cliente:this.searchCliente
@@ -559,6 +547,12 @@ resultado.innerText =  "Formato: " + valido;
 					this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
 					this.nuevoServicio.id_cliente=id;
 					$('#agregarServicio').modal('show');
+				},
+				addContrato:function(id){
+
+					//this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
+					//this.nuevoServicio.id_cliente=id;
+					$('#agregaContrato').modal('show');
 				},
 				addContacto:function(){
 					$('#agregarContacto').modal('show');
@@ -672,6 +666,20 @@ resultado.innerText =  "Formato: " + valido;
                         });
 
 				},
+				showServicio2:function (id) {
+					var url= 'comercializacion/servicio/show2';
+
+						axios.post(url,{
+                            id:id
+                        }).then(response=>{
+                        	this.showAlerts(response.data.informacion);
+							this.mostrarServicio=response.data.resultados;
+							$('#verServicio').modal('show');
+                        }).catch(error=>{
+                        });
+
+				},
+
 
 				editaCliente: function(id){
 					var url= 'comercializacion/cliente/show';
@@ -716,7 +724,8 @@ resultado.innerText =  "Formato: " + valido;
 					this.pagination.current_page = page;
 					//se vuelve a llamar al metodo search con la variable page
 					//para que pueda hacer la paginacion
-					this.search(page);
+					this.search2(page);
+					//this.getKeeps(page);//genere un nuevo listado
 				},
 
 				limpiar: function(formulario){
