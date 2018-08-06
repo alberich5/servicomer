@@ -25,6 +25,12 @@ class ServicioController extends Controller
 
 
     }
+    //funcion para traer las delegaciones
+    public function showDelegaciones()
+    {
+      return "Se devuelve el valor";
+
+    }
 
     public function search(Request $request)
     {

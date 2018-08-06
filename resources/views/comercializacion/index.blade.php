@@ -495,7 +495,7 @@ resultado.innerText =  "Formato: " + valido;
 
 				},
 				showDelegaciones:function(){
-
+					
 				},
 				updateCliente:function(){
 					var url= 'comercializacion/cliente/actualizar';
