@@ -25,7 +25,7 @@
 				<label>Telefono</label><br>
 				<input type="text" class="form-control" name="" v-model="nuevoContacto.telefono"  style="text-transform: uppercase;">
 				<label>Correo</label><br>
-				<input type="text" class="form-control" name="" v-model="nuevoContacto.correo">
+				<input type="text" class="form-control" name="" v-model="nuevoContacto.correo" style="text-transform: uppercase;">
 				<label>celular</label><br>
 				<input type="text" class="form-control" name="" v-model="nuevoContacto.celular"  style="text-transform: uppercase;">
 

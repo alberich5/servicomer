@@ -11,7 +11,8 @@
     <title>{{ config('app.name','P.A.B.I.C.')}}</title>
 
     <!-- Styles -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
     @yield('css')
     <style>
     .modal-header {
@@ -117,18 +118,13 @@
 
     <!-- Scripts-->
 
-          <script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+    <script src="{{ asset('js/jquery-3.3.1.js') }}"></script> 
+   
+    <script src="{{ asset('js/vue.js') }}"></script> 
+    <script src="{{ asset('js/axios.js') }}"></script> 
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script> 
 
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script src="{{ asset('js/toastr.min.js') }}"></script> 
     @yield('js')
 </body>
 </html>

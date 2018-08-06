@@ -187,13 +187,13 @@
     </div>
 
 
-<div class="col-sm-12">
+	<!--<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
 		</pre>
 	</div>
-
+-->
 	@include('comercializacion.modals.crearCliente')
 	@include('comercializacion.modals.agregarServicio')
 	@include('comercializacion.modals.agregarContacto')

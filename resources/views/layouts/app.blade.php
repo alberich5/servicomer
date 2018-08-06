@@ -11,7 +11,12 @@
     <title>{{ config('app.name','P.A.B.I.C.')}}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
+
+
+        <link href="{{ asset('css/hint.base.css') }}" rel="stylesheet">
     @yield('css')
 </head>
 <body>
@@ -75,8 +80,15 @@
         @yield('content')
     </div>
 
+
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/jquery-3.3.1.js') }}"></script> 
+   
+  <script src="{{ asset('js/vue.js') }}"></script> 
+  <script src="{{ asset('js/axios.js') }}"></script> 
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script> 
+
+  <script src="{{ asset('js/toastr.min.js') }}"></script> 
     
     @yield('js')
 </body>

@@ -59,9 +59,7 @@
         </select>
 
 				<br>
-				<button v-on:click.prevent="addArchivos()">Subir Documentacion</button>
-				<br>
-				<label>Llista de Archivos</label>
+				
 
 			</div>
 			<div class="modal-footer">

@@ -215,6 +215,8 @@ class ClienteController extends Controller
             $cliente->domicilio_notificacion=$request['cliente']['domicilio_notificacion'];
             $cliente->update();
             $informacion['resultado']='La actualizacion del cliente  fue exitoso';
+
+            $this->historial('Cliente  '.$request['cliente']['id'].' actualizado');
           }
           catch(\Exception $e) {
               $informacion['error']=true;
@@ -242,6 +244,7 @@ class ClienteController extends Controller
             $repLegal->nombre=strtoupper($request['cliente']['replegal']);
             $repLegal->tipo="Cliente";
             $repLegal->save();
+            
             $ultimorep = RepresentanteLegal::orderBy('id', 'desc')->first();
             //Aqui se guarda el cliente
             $cliente=new ComercializacionCliente;
@@ -255,10 +258,10 @@ class ClienteController extends Controller
             $cliente->domicilio_notificacion="PENDIENTE";//no necesario que lo capturen
             $cliente->id_delegacion=$request['cliente']['id_delegacion'];
             $cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
-            $cliente->id_representante_legal=$ultimorep->id;
+            $cliente->id_representante_legal=$repLegal->id;//$ultimorep->id;
             $cliente->save();
 
-
+            $this->historial('Registro del Cliente  id:'. $cliente->id);
             $informacion['resultado']='El registro del cliente '.$cliente->razon_social.' fue exitoso';
         }
         catch(\Exception $e) {

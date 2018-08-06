@@ -24,6 +24,47 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+        public function cambioContrasenaUsuario()
+    {
+        $usuario = User::where('id','=',Auth::user()->id)
+        ->select('id','contrasena')
+        ->first();
+
+        return $usuario;
+    }
+
+       public function guardarCambioContrasenaUsuario(Request $request)
+    {
+        $informacion=['error'=>false, 'resultado' => ''];
+
+        $usuario = User::where('id','=',Auth::user()->id)
+        ->first();
+
+        if($usuario->contrasena==false)
+        {
+        $usuario->contrasena=true;
+        $usuario->password = bcrypt($request['usuario']['contrasena']);
+        $usuario->save();
+
+       
+
+       //$this->historial('Cambio de contraseña '.$request['usuario']['contrasena']);
+
+        $informacion['error']=false;
+        $informacion['resultado']='Cambio de contraseña para el usuario '.$usuario->username." realizado con éxito";
+        }//fin if
+        else{
+        $informacion['error']=true;
+        $informacion['resultado']='Error al actualizar la contraseña del usuario '.$usuario->username;
+        }
+        
+
+       
+        return $informacion;
+    }
+
+
     public function index()
     {
  

@@ -6,11 +6,30 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use App\User;
+use Carbon\Carbon;
+use App\Historial;
+use Auth;
+
 
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+
+    public function historial($detalle)
+{
+        $usuario = User::find(Auth::user()->id);
+
+        $historial = new Historial;
+        $historial->fecha=Carbon::now();
+        $historial->id_usuario=$usuario->id;
+        $historial->id_accion=0;
+        $historial->id_acceso=$usuario->id_acceso;
+        $historial->detalle=$detalle;
+        $historial->save();
+
+}
         public function mesAletra($mes)
     {
     	$m="";

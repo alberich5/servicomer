@@ -6,9 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Caffeinated\Shinobi\Models\Role;
 use App\User;
+use App\Historial;
 
 class UserController extends Controller
 {
+
+
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +38,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-
+        
         return view('users.show', compact('user'));
     }
 

@@ -11,10 +11,10 @@
 			<div class="modal-body">
 				<!---razon social-->
 				<label for="registro">Tipo</label>
-				<input type="text" class="form-control" v-model="editModalidad.tipo">
+				<input type="text" class="form-control" v-model="editModalidad.tipo" style="text-transform: uppercase;">
 				<!---Tipo Horario-->
 				<label for="registro">Tipo Horario</label>
-        <input type="text" class="form-control" v-model="editModalidad.tipo_turno">
+        			<input type="text" class="form-control" v-model="editModalidad.tipo_turno" style="text-transform: uppercase;">
 				<!---Horario-->
 				<label for="registro">Horario</label>
 				<input type="text" class="form-control" v-model="editModalidad.horario">

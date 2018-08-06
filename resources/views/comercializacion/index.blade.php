@@ -203,7 +203,7 @@
     </div>
 
 <!--
-<div class="col-sm-12">
+	<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
@@ -329,7 +329,8 @@ resultado.innerText =  "Formato: " + valido;
 							{id:'2', nombre:'MEDIO'},
 							{id:'3', nombre:'BAJO'},
 				],
-				giros:[{id:'1', nombre:'GASOLINERAS/GASERAS'},
+				giros:[
+												{id:'1', nombre:'GASOLINERAS/GASERAS'},
 												{id:'2', nombre:'AGENCIAS AUTOMOTRICES/MOTOCICLETAS'},
 												{id:'3', nombre:'BANCOS'},
 												{id:'4', nombre:'BEBIDAS/CERVECEZA/REFRESCOS/MEZCAL'},
@@ -490,6 +491,8 @@ resultado.innerText =  "Formato: " + valido;
 						this.nuevoCliente={num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',rfc:'',domicilio_fiscal:''};
 						//llamar la busqueda
 						this.search();
+
+
 				},
 				showDelegaciones:function(){
 

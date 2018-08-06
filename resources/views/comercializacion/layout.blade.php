@@ -7,9 +7,11 @@
 
         <title>BUSQUEDA</title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+       <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
       
-        <link href="{{ asset('css/toastr.css') }}" rel="stylesheet">
+     
         <link href="{{ asset('css/hint.base.css') }}" rel="stylesheet">
 
 
@@ -31,13 +33,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">USUARIOS <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ url('/Busca') }}">Buscar</a></li>
-            <li><a href="{{ url('/Agregar') }}">Agregar</a></li>
-          </ul>
-        </li>
+   
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -82,19 +78,15 @@
     </div>
 
   
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-    crossorigin="anonymous"></script>
+    <!-- Scripts -->
+  <script src="{{ asset('js/jquery-3.3.1.js') }}"></script> 
+   
+  <script src="{{ asset('js/vue.js') }}"></script> 
+  <script src="{{ asset('js/axios.js') }}"></script> 
+  <script src="{{ asset('js/bootstrap.min.js') }}"></script> 
 
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
-
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-    <script src="{{ asset('js/toastr.js') }}"></script>
+  <script src="{{ asset('js/toastr.min.js') }}"></script> 
+ 
     
 
 

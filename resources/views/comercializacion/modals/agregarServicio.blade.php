@@ -47,7 +47,7 @@
 				<td><input type="date" class="form-control" placeholder="" v-model="nuevoServicio.fecha_contratacion" required style="text-transform: uppercase;"></td><br>
 
 				<label>Observación</label><br>
-				<td><textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none" rows="4" cols="500"  v-model="nuevoServicio.observacion"  style="text-transform: uppercase;"></textarea></td><br>
+				<td><textarea  class="form-control" autofocus aria-describedby="basic-addon1" style="overflow:auto;resize:none; text-transform: uppercase;" rows="4" cols="500"  v-model="nuevoServicio.observacion" ></textarea></td><br>
 
 
 				<center>

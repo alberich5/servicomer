@@ -107,6 +107,8 @@ class ServicioController extends Controller
               }
 
             $informacion['resultado']='El registro del servicio '.$servicio->nombre_comercial.' fue exitoso';
+            $this->historial('Registro del Servicio id:'. $servicio->id);
+            //agregar un historial que usuario hizo el movimiento
         }
         catch(\Exception $e) {
             $informacion['error']=false;
@@ -248,6 +250,7 @@ class ServicioController extends Controller
           $contacto->update();
 
             $informacion['resultado']='La actualizacion del Contacto fue exitoso';
+            $this->historial('Actualizacion de contacto id:'. $contacto->id);
           }
           catch(\Exception $e) {
               $informacion['error']=true;
@@ -265,7 +268,7 @@ class ServicioController extends Controller
           $modalidad->tipo_turno=$request['modalidad']['tipo_turno'];
           $modalidad->horario=$request['modalidad']['horario'];
           $modalidad->update();
-
+            $this->historial('Actualizacion de modalidad id:'. $modalidad->id);
             $informacion['resultado']='Se Actualizo la Modalidad fue exitoso';
           }
           catch(\Exception $e) {

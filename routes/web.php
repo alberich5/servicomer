@@ -54,6 +54,10 @@ Route::get('/admin/usuario/permisos', 'admin\UsuarioController@getPermisos')->na
 
 Route::get('/admin/usuario/sucursales', 'admin\UsuarioController@getSucursales')->name('administrador.usuario.sucursales');
 
+Route::get('/admin/usuario/contrasena', 'admin\UsuarioController@cambioContrasenaUsuario')->name('administrador.usuario.contrasena.cambio');
+
+Route::post('/admin/usuario/contrasena/store',['uses'=> 'admin\UsuarioController@guardarCambioContrasenaUsuario', 'as'=> 'administrador.usuario.contrasena.cambio.store']);
+
 
 
 //Roles
