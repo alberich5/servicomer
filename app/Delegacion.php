@@ -13,7 +13,7 @@ class Delegacion extends Model
      */
 
     protected $connection='pgsql';
-    protected $table = 'rh_sucursal';
+    protected $table = 'admin_delegacion';
     /**
      * The attributes that are mass assignable.
      *

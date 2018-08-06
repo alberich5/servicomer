@@ -113,6 +113,16 @@ Route::post('comercializacion/cliente/search',['uses'=> 'comercializacion\Client
 Route::post('comercializacion/cliente/search2',['uses'=> 'comercializacion\ClienteController@search2', 'as'=> 'comercializacion.cliente.search2']);
 
 Route::post('comercializacion/cliente/store',['uses'=> 'comercializacion\ClienteController@store', 'as'=> 'comercializacion.cliente.store']);
+
+//Mostrar delegaciones
+Route::post('comercializacion/delegaciones/show',['uses'=> 'comercializacion\ServicioController@showDelegaciones', 'as'=> 'comercializacion.delegaciones.show']);
+
+//Mostrar modalidades
+Route::post('comercializacion/modalidades/show',['uses'=> 'comercializacion\ServicioController@showModalidades', 'as'=> 'comercializacion.modalidades.show']);
+
+//Mostrar giros
+Route::post('comercializacion/giros/show',['uses'=> 'comercializacion\ServicioController@showGiro', 'as'=> 'comercializacion.giros.show']);
+
 //Actualizar cliente
 Route::post('comercializacion/cliente/actualizar',['uses'=> 'comercializacion\ClienteController@actualizar', 'as'=> 'comercializacion.cliente.actualizar']);
 

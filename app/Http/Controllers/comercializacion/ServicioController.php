@@ -11,6 +11,9 @@ use App\analisis_riesg_dictamen;
 use App\ComercializacionServicioContacto;
 use App\ComercializacionContrato;
 use App\ComercializacionServicioElemento;
+use App\Delegacion;
+use App\ComercializacionServicioModalidad;
+use App\ComercializacionServicioGiro;
 
 class ServicioController extends Controller
 {
@@ -25,10 +28,28 @@ class ServicioController extends Controller
 
 
     }
-    //funcion para traer las delegaciones
-    public function showDelegaciones()
+    //funcion para traer todos los giros
+    public function showGiro(Request $request)
     {
-      return "Se devuelve el valor";
+      $giros=ComercializacionServicioGiro::select('id','nombre')
+      ->get();
+      return $giros;
+    }
+    
+    //funcion para traer las delegaciones
+    public function showDelegaciones(Request $request)
+    {
+      $delegaciones=Delegacion::select('id','nombre')
+      ->get();
+      return $delegaciones;
+
+    }
+    //mostrar Modalidades
+    public function showModalidades(Request $request)
+    {
+      $delegaciones=ComercializacionServicioModalidad::select('id','nombre'.'tipo')
+      ->get();
+      return $delegaciones;
 
     }
 

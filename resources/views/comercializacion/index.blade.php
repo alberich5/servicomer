@@ -202,13 +202,13 @@
       </div>
     </div>
 
-<!--
+
 	<div class="col-sm-12">
 		<br><br>
 		<pre>
 			@{{ $data }}
 		</pre>
-	</div>--->
+	</div>
 
 	@include('comercializacion.modals.crearCliente')
 	@include('comercializacion.modals.agregarServicio')
@@ -295,6 +295,7 @@ resultado.innerText =  "Formato: " + valido;
 			el: '#crud',
 			created: function(){
 				this.showDelegaciones();
+				//this.showGiros();
 			},
 
 			data:{
@@ -307,19 +308,14 @@ resultado.innerText =  "Formato: " + valido;
 				editContacto:{},
 				editModalidad:{},
 				clientes:[],
+				giros:[],
+				delegaciones:[],
 				nuevoServicio:{id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
 				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
 				editarCliente:{},
 				mostrarClienteHistorial:[],
 				mostrarServicio:{},
-				delegaciones:[{id:'1', nombre:'VALLES CENTRALES'},
-							{id:'2', nombre:'PINOTEPA'},
-							{id:'3', nombre:'MATIAS ROMERO'},
-							{id:'3', nombre:'TUXTEPEC'},
-							{id:'4', nombre:'HUAJUAPAM DE LEON'},
-							{id:'4', nombre:'PUERTO ESCONDIDO'},
-							{id:'4', nombre:'JUCHITAN'},
-				],
+
 				tipo_contra:[{id:'1', nombre:'PRIVADA'},
 							{id:'2', nombre:'ESTATAL'},
 							{id:'2', nombre:'FEDERAL'},
@@ -329,21 +325,21 @@ resultado.innerText =  "Formato: " + valido;
 							{id:'2', nombre:'MEDIO'},
 							{id:'3', nombre:'BAJO'},
 				],
-				giros:[
-												{id:'1', nombre:'GASOLINERAS/GASERAS'},
-												{id:'2', nombre:'AGENCIAS AUTOMOTRICES/MOTOCICLETAS'},
-												{id:'3', nombre:'BANCOS'},
-												{id:'4', nombre:'BEBIDAS/CERVECEZA/REFRESCOS/MEZCAL'},
-												{id:'5', nombre:'CENTRO COMERCIAL'},
-												{id:'6', nombre:'CLINICAS/HOSPITALES/MEDICOS/OCULISTAS'},
-												{id:'7', nombre:'CONSTRUCCION/FERRETERO/CEMENTO'},
-												{id:'8', nombre:'ESCOLTA/PARTICULAR/EVENTOS SOCIALES'},
-												{id:'9', nombre:'ESTATAL/CLINICAS HOSPITALES'},
-												{id:'10', nombre:'FABRICAS/DISTRIBUIDORAS DE MAQ. E INSUMOS'},
-												{id:'11', nombre:'FINANCIERA/CASAS EMPEÑO/CAJAS AHORRO'},
-												{id:'12', nombre:'INGENIOS/ASERRADEROS/MINAS'},
-												{id:'13', nombre:'OFICINAS/ASOCIACIONES/DESPACHOS/CONSULTORIAS'},
-				],
+				giros:[{id:'1', nombre:'GASOLINERAS/GASERAS'},
+											{id:'2', nombre:'AGENCIAS AUTOMOTRICES/MOTOCICLETAS'},
+											{id:'3', nombre:'BANCOS'},
+											{id:'4', nombre:'BEBIDAS/CERVECEZA/REFRESCOS/MEZCAL'},
+											{id:'5', nombre:'CENTRO COMERCIAL'},
+											{id:'6', nombre:'CLINICAS/HOSPITALES/MEDICOS/OCULISTAS'},
+											{id:'7', nombre:'CONSTRUCCION/FERRETERO/CEMENTO'},
+											{id:'8', nombre:'ESCOLTA/PARTICULAR/EVENTOS SOCIALES'},
+											{id:'9', nombre:'ESTATAL/CLINICAS HOSPITALES'},
+											{id:'10', nombre:'FABRICAS/DISTRIBUIDORAS DE MAQ. E INSUMOS'},
+											{id:'11', nombre:'FINANCIERA/CASAS EMPEÑO/CAJAS AHORRO'},
+											{id:'12', nombre:'INGENIOS/ASERRADEROS/MINAS'},
+											{id:'13', nombre:'OFICINAS/ASOCIACIONES/DESPACHOS/CONSULTORIAS'},
+			],
+
 				giro:[{id:'1', nombre:'ESCOLTA'},
 				],
 				modalidad:[{id:'1', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR MES', precio:'13,632'},
@@ -495,8 +491,20 @@ resultado.innerText =  "Formato: " + valido;
 
 				},
 				showDelegaciones:function(){
-					
+					var url= 'comercializacion/delegaciones/show';
+					axios.post(url).then(response=>{
+											this.delegaciones=response.data
+											}).catch(error=>{
+											});
 				},
+				showGiros:function(){
+					var url= 'comercializacion/giros/show';
+					axios.post(url).then(response=>{
+											this.giros=response.data
+											}).catch(error=>{
+											});
+				},
+
 				updateCliente:function(){
 					var url= 'comercializacion/cliente/actualizar';
 					axios.post(url,{
