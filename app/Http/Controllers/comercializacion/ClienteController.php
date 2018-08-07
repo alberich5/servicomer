@@ -212,6 +212,7 @@ class ClienteController extends Controller
             $cliente->nombre_comercial=$request['cliente']['nombre_comercial'];
             $cliente->giro=$request['cliente']['giro'];
             $cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
+            $cliente->id_delegacion=$request['cliente']['id_delegacion'];
             $cliente->domicilio_notificacion=$request['cliente']['domicilio_notificacion'];
             $cliente->update();
             $informacion['resultado']='La actualizacion del cliente  fue exitoso';
@@ -244,7 +245,7 @@ class ClienteController extends Controller
             $repLegal->nombre=strtoupper($request['cliente']['replegal']);
             $repLegal->tipo="Cliente";
             $repLegal->save();
-            
+
             $ultimorep = RepresentanteLegal::orderBy('id', 'desc')->first();
             //Aqui se guarda el cliente
             $cliente=new ComercializacionCliente;

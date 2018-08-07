@@ -20,7 +20,19 @@
 				<input type="text" class="form-control" v-model="editarCliente.nombre_comercial" style="text-transform: uppercase;"><br>
 
 				<label>Giro</label><br>
-				<input type="text" class="form-control" v-model="editarCliente.giro" style="text-transform: uppercase;"><br>
+				
+				<select class="form-control" v-model="editarCliente.giro">
+                        <option v-for="giro in giros" v-bind:value="giro.id" class="lista">
+                          @{{ giro.nombre}}
+                        </option>
+        </select>
+
+				<label>Delegacion</label><br>
+				<select class="form-control" v-model="editarCliente.id_delegacion">
+                        <option v-for="de in delegaciones" v-bind:value="de.id" class="lista">
+                          @{{ de.nombre}}
+                        </option>
+        </select>
 
 				<label>Tipo Contrato</label><br>
 				<input type="text" class="form-control" v-model="editarCliente.tipo_contrato" style="text-transform: uppercase;"><br>
