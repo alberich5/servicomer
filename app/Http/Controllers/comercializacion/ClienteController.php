@@ -18,33 +18,6 @@ class ClienteController extends Controller
      */
     public function index()
     {
-      /*
-        $request['cliente']['id']="";
-        $request['cliente']['num_cliente']="";
-        $request['cliente']['razon_social']="dhfhfdhfd";
-        $request['cliente']['nombre_comercial']="dhfhfdhfd";
-        $request['cliente']['fecha']="2018-07-21";
-        $request['cliente']['domicilio_fiscal']="dfhdfh";
-
-        $request['servicio']['nombre_comercial']="kjasbck";
-        $request['servicio']['domicilio']="kjasbck";
-        $request['servicio']['municipio']="kjasbck";
-        $request['servicio']['giro']="kjasbck";
-        $request['servicio']['observacion']="kjasbck";
-        $request['servicio']['fecha_contratacion']="2018-07-21";
-        $request['servicio']['id_cliente']=2;
-        $request['servicio']['elementos']=array();
-        $request['servicio']['elementos'][0]=array(
-        "id"=> 1,
-        "tipo"=> "ESCOLTA",
-        "cantidad"=> "4",
-        "tipo_turno"=> "24x24",
-        "horario"=> "kswlrk"
-      );*/
-
-
-
-
 
        return view ('comercializacion.index');
     }
@@ -119,79 +92,6 @@ class ClienteController extends Controller
 
     }
 
-    //busqueda de juridico
-    public function search2(Request $request)
-    {
-        $informacion=['error'=>false, 'resultado' => ''];
-
-        if($request['cliente']['id']!='')
-        {
-            $clientes=ComercializacionCliente::where('id',$request['cliente']['id'])
-           // ->whereIn('estatus',array('Candidato Contratado','Candidato Historico'))
-           // ->orderBy('id','asc')
-            ->select('id','razon_social','estatus')
-            ->paginate(10);
-        }
-        else{
-            if($request['cliente']['fecha']!='')
-            {
-            $clientes=ComercializacionCliente::where('razon_social','like','%'.strtoupper($request['cliente']['razon_social']).'%')
-            ->where('nombre_comercial','like','%'.strtoupper($request['cliente']['nombre_comercial']).'%')
-            ->whereDate('fecha_alta','=',$request['cliente']['fecha'])
-            ->select('id','razon_social','estatus')
-            //->orderBy('id','desc')
-            ->paginate(10);
-            }
-            else{
-            $clientes=ComercializacionCliente::where('razon_social','like','%'.strtoupper($request['cliente']['razon_social']).'%')
-            ->where('nombre_comercial','like','%'.strtoupper($request['cliente']['nombre_comercial']).'%')
-            ->select('id','razon_social','estatus')
-            //->orderBy('id','desc')
-            ->paginate(10);
-            }
-
-
-        }
-
-
-
-        if(sizeof($clientes)!=0)
-        {
-            $informacion['resultado']='Busqueda realizada con éxito';
-            //recorremos el arreglo de clientes y agregamos sus servicios
-             for ($i=0; $i < sizeof($clientes) ; $i++) {
-                 # code...
-                $servicios=ComercializacionServicio::where('id_cliente','=',$clientes[$i]['id'])
-                    ->where('estatus','=',true)
-                    ->select('id','id_contrato','nombre_comercial')
-                    ->get();
-
-                $clientes[$i]['servicios']=$servicios;
-             }
-
-        }
-        else{
-            $informacion['error']=true;
-            $informacion['resultado']='La busqueda no arrojó ningun resultado';
-
-        }
-
-        return [
-            'pagination'=>[
-                'total'         =>$clientes->total(),
-                'current_page'  =>$clientes->currentPage(),
-                'per_page'      =>$clientes->perPage(),
-                'last_page'     =>$clientes->lastPage(),
-                'from'          =>$clientes->firstItem(),
-                'to'            =>$clientes->lastItem()
-            ],
-            'resultados'=>$clientes,
-            'informacion'=>$informacion
-        ];
-
-
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -203,19 +103,22 @@ class ClienteController extends Controller
     }
     public function actualizar(Request $request)
     {
+
         $informacion=['error'=>false, 'resultado' => ''];
 
           try{
             $cliente=ComercializacionCliente::findOrFail($request['cliente']['id']);
-            $cliente->razon_social=$request['cliente']['razon_social'];
-            $cliente->domicilio_fiscal=$request['cliente']['domicilio_fiscal'];
-            $cliente->nombre_comercial=$request['cliente']['nombre_comercial'];
+            $cliente->razon_social=strtoupper($request['cliente']['razon_social']);
+            $cliente->domicilio_fiscal=strtoupper($request['cliente']['domicilio_fiscal']);
+            $cliente->nombre_comercial=strtoupper($request['cliente']['nombre_comercial']);
             $cliente->giro=$request['cliente']['giro'];
-            $cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
+            //$cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
             $cliente->id_delegacion=$request['cliente']['id_delegacion'];
-            $cliente->domicilio_notificacion=$request['cliente']['domicilio_notificacion'];
+            $cliente->domicilio_notificacion=strtoupper($request['cliente']['domicilio_notificacion']);
             $cliente->update();
             $informacion['resultado']='La actualizacion del cliente  fue exitoso';
+
+
 
             $this->historial('Cliente  '.$request['cliente']['id'].' actualizado');
           }
@@ -235,39 +138,43 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $informacion=['error'=>false, 'resultado' => ''];
+        $informacion=['error'=>false, 'resultado' => '','id'=>''];
 
 
 
         try{
           //Aqui se guarda el representante legal
-            $repLegal=new RepresentanteLegal;
+            /*$repLegal=new RepresentanteLegal;
             $repLegal->nombre=strtoupper($request['cliente']['replegal']);
             $repLegal->tipo="Cliente";
             $repLegal->save();
+*/
 
-            $ultimorep = RepresentanteLegal::orderBy('id', 'desc')->first();
             //Aqui se guarda el cliente
             $cliente=new ComercializacionCliente;
             $cliente->razon_social=strtoupper($request['cliente']['razon_social']);
-            $cliente->domicilio_fiscal=strtoupper($request['cliente']['domicilio_fiscal']);
+            //$cliente->domicilio_fiscal=strtoupper($request['cliente']['domicilio_fiscal']);
             $cliente->fecha_alta=$request['cliente']['fecha'];
             $cliente->nombre_comercial=strtoupper($request['cliente']['nombre_comercial']);
-            $cliente->rfc="PENDIENTE";//no necesario que lo capturen
-            $cliente->cargo=strtoupper($request['cliente']['cargo']);
+            //$cliente->rfc="PENDIENTE";//no necesario que lo capturen
+            //$cliente->cargo=strtoupper($request['cliente']['cargo']);
             $cliente->giro=strtoupper($request['cliente']['giro']);
-            $cliente->domicilio_notificacion="PENDIENTE";//no necesario que lo capturen
+
+            //$cliente->domicilio_notificacion="PENDIENTE";//no necesario que lo capturen
             $cliente->id_delegacion=$request['cliente']['id_delegacion'];
-            $cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
-            $cliente->id_representante_legal=$repLegal->id;//$ultimorep->id;
+            //$cliente->tipo_contrato=$request['cliente']['tipo_contrato'];
+            //$cliente->id_representante_legal=$repLegal->id;//$ultimorep->id;
             $cliente->save();
+
 
             $this->historial('Registro del Cliente  id:'. $cliente->id);
             $informacion['resultado']='El registro del cliente '.$cliente->razon_social.' fue exitoso';
+            $informacion['id']=$cliente->id;
         }
         catch(\Exception $e) {
             $informacion['error']=true;
             $informacion['resultado']='Registro de datos incorrecto, reporte añadido a SISTEMAS';
+
         }
         return $informacion;
 

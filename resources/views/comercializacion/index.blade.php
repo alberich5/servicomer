@@ -211,16 +211,15 @@
 	</div>
 
 	@include('comercializacion.modals.crearCliente')
+	@include('comercializacion.modals.verCliente')
+	@include('comercializacion.modals.editarCliente')
 	@include('comercializacion.modals.agregarServicio')
 	@include('comercializacion.modals.agregarContacto')
 	@include('comercializacion.modals.agregarElementos')
-	@include('comercializacion.modals.verCliente')
-	@include('comercializacion.modals.historialServicios')
 	@include('comercializacion.modals.verServicio')
-	@include('comercializacion.modals.editarCliente')
-	@include('comercializacion.modals.agregarArchivosCliente')
 	@include('comercializacion.modals.editarContacto')
 	@include('comercializacion.modals.editarModalidad')
+	@include('comercializacion.modals.historialServicios')
 
 
 </div>
@@ -228,117 +227,32 @@
 @endsection
 
 @section('js')
-<script type="text/javascript">
-
-function rfcValido(rfc, aceptarGenerico = true) {
-const re       = /^([A-ZÑ&]{3,4}) ?(?:- ?)?(\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])) ?(?:- ?)?([A-Z\d]{2})([A\d])$/;
-var   validado = rfc.match(re);
-
-if (!validado)  //Coincide con el formato general del regex?
-  return false;
-
-//Separar el dígito verificador del resto del RFC
-const digitoVerificador = validado.pop(),
-    rfcSinDigito      = validado.slice(1).join(''),
-    len               = rfcSinDigito.length,
-
-//Obtener el digito esperado
-    diccionario       = "0123456789ABCDEFGHIJKLMN&OPQRSTUVWXYZ Ñ",
-    indice            = len + 1;
-var   suma,
-    digitoEsperado;
-
-if (len == 12) suma = 0
-else suma = 481; //Ajuste para persona moral
-
-for(var i=0; i<len; i++)
-  suma += diccionario.indexOf(rfcSinDigito.charAt(i)) * (indice - i);
-digitoEsperado = 11 - suma % 11;
-if (digitoEsperado == 11) digitoEsperado = 0;
-else if (digitoEsperado == 10) digitoEsperado = "A";
-
-//El dígito verificador coincide con el esperado?
-// o es un RFC Genérico (ventas a público general)?
-if ((digitoVerificador != digitoEsperado)
-&& (!aceptarGenerico || rfcSinDigito + digitoVerificador != "XAXX010101000"))
-  return false;
-else if (!aceptarGenerico && rfcSinDigito + digitoVerificador == "XEXX010101000")
-  return false;
-return rfcSinDigito + digitoVerificador;
-}
-
-
-//Handler para el evento cuando cambia el input
-// -Lleva la RFC a mayúsculas para validarlo
-// -Elimina los espacios que pueda tener antes o después
-function validarInput(input) {
-var rfc         = input.value.trim().toUpperCase(),
-  resultado   = document.getElementById("resultado"),
-  valido;
-
-var rfcCorrecto = rfcValido(rfc);   // ⬅️ Acá se comprueba
-
-if (rfcCorrecto) {
-valido = "Válido";
-resultado.classList.add("ok");
-} else {
-valido = "No válido"
-resultado.classList.remove("ok");
-}
-
-resultado.innerText =  "Formato: " + valido;
-}
-</script>
 
 <script type="text/javascript">
 		new Vue({
 			el: '#crud',
 			created: function(){
-				this.showDelegaciones();
-				this.showGiros();
+
 			},
 
 			data:{
 				searchCliente:{id:'',razon_social:'',nombre_comercial:'',fecha:''},
+				clientes:[],
 				nuevoCliente:{num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',domicilio_fiscal:'',domicilio_fiscal:'',rfc:'',giro:'',cargo:'',notificacion:'',id_delegacion:'',tipo_contrato:'',replegal:''},
-				nuevoElemento:{id:'',tipo:'',cantidad:'',tipo_turno:'',horario:''},
+				giros:[],
+				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
+				nuevoServicio:{id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
+				delegaciones:[],
 				nuevoContacto:{id:'',nombre:'',tipo:'',dato:''},
+				nuevoElemento:{id:'',tipo:'',cantidad:'',tipo_turno:'',horario:''},
+				mostrarClienteHistorial:[],
+				editarCliente:{},
+				mostrarServicio:{},
 				id_contacto:'',
 				id_modalidad:'',
 				editContacto:{},
 				editModalidad:{},
-				clientes:[],
-				giros:[],
-				delegaciones:[],
-				nuevoServicio:{id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
-				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
-				editarCliente:{},
-				mostrarClienteHistorial:[],
-				mostrarServicio:{},
-				tipo_contra:[{id:'1', nombre:'PRIVADA'},
-							{id:'2', nombre:'ESTATAL'},
-							{id:'2', nombre:'FEDERAL'},
-							{id:'2', nombre:'MUNICIPAL'},
-				],
-				nivelRiesgo:[{id:'1', nombre:'ALTO'},
-							{id:'2', nombre:'MEDIO'},
-							{id:'3', nombre:'BAJO'},
-				],
-				
-
-				giro:[{id:'1', nombre:'ESCOLTA'},
-				],
-				modalidad:[{id:'1', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR MES', precio:'13,632'},
-		                    {id:'2', nombre:'SIN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 15 DIAS', precio:'7,131'},
-		                    {id:'3', nombre:'CON UN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 1 MES', precio:'14,588'},
-		                    {id:'4', nombre:'CON UN ARMA, POR ELEMENTO EN TURNO DE 12 HRS, POR 15 DIAS', precio:'7,718'},
-		                    {id:'5', nombre:'CON UN ARMA, POR ELEMENTO, MAS RELEVO EN UN TURNO DE 12 HRS POR MES', precio:'29,176'},
-		                    {id:'6', nombre:'DE OFICIALIDAD CON UN ARMA, POR ELEMENTO EN UN TURNO DE 12 HRS POR 1 MES', precio:'16,745'},
-		                    {id:'7', nombre:'DE OFICIALIDAD CON UN ARMA, POR ELEMENTO EN UN TURNO DE 12 HRS POR 1 SEMANA' , precio:'4,423'},
-		                    {id:'8', nombre:'ESCOLTA CON UN ARMA POR ELEMENTO EN UN TURNO DE 12 HRS, POR 1 MES', precio:'19,048'},
-		                    {id:'9', nombre:'ESCOLTA CON UN ARMA POR ELEMENTO EN UN TURNO DE 12 HRS, POR 1 SEMANA', precio:'5,028'},
-												{id:'9', nombre:'ESCOLTA CON VEHICULO DE MOTOR CON DOS ELEMENTOS ARMADOSA BORDO, EN UN TURNO DE 12 HRS POR 1 MES', precio:'72,127'},
-		    ],
+				//variables base
 				firstOptions: null,
 								secondOption: null,
 								list: {
@@ -377,10 +291,6 @@ resultado.innerText =  "Formato: " + valido;
 									  {id:'4', tipo_servicio:'MONITOREO A TRAVES DE CIRCUITO CERRADO, POR 1 CAMARA POR 1 MES', precio:'2,257.00'}
 								  ]
 								},
-				prueba:'prueba',
-				clienteVer:{razon_social:'',nombre_comercial:'',domicilio_fiscal:'', estatus:''},
-
-				//variables base
 				offset: 3,
 				currentSort:'id',
     			currentSortDir:'asc',
@@ -391,8 +301,8 @@ resultado.innerText =  "Formato: " + valido;
             		 'last_page' :0,
             		 'from' :0,
             		 'to' :0
-				},
-    			idU: '',
+				}
+
 			},
 
 			computed: {
@@ -445,10 +355,11 @@ resultado.innerText =  "Formato: " + valido;
 			methods: {
 
 				search: function(page){
-					var url= 'comercializacion/cliente/search?page='+page;
+					var url= 'comercializacion/cliente/search';
 
 						axios.post(url,{
-                            cliente:this.searchCliente
+                            cliente:this.searchCliente,
+                            page:page
                         }).then(response=>{
                         	this.showAlerts(response.data.informacion);
 							this.clientes=response.data.resultados.data;
@@ -456,41 +367,82 @@ resultado.innerText =  "Formato: " + valido;
                         }).catch(error=>{
                         });
 				},
-				create:function(){
+				create:function()
+				{
 					this.nuevoCliente={num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',domicilio_fiscal:''};
+					var url= 'comercializacion/delegaciones/show';
+					axios.post(url).then(response=>{
+							this.delegaciones=response.data
+							}).catch(error=>{});
+					var url= 'comercializacion/giros/show';
+					axios.post(url).then(response=>{
+							this.giros=response.data
+							}).catch(error=>{});
+
 					 $('#crearCliente').modal('show');
 				},
 				store:function(){
-											var url= 'comercializacion/cliente/store';
-												axios.post(url,{
-						                            cliente:this.nuevoCliente
-						                        }).then(response=>{
-						                        	this.showAlerts(response.data);
+					var url= 'comercializacion/cliente/store';
+					axios.post(url,{
+						cliente:this.nuevoCliente
+						 }).then(response=>{
+						// this.showAlerts(response.data);
+						$('#crearCliente').modal('toggle');
 
-													$('#crearCliente').modal('toggle');
-						                        }).catch(error=>{
-						                        });
+						//console.log(response.data);
+						this.searchCliente={id:response.data.id,razon_social:'',nombre_comercial:'',fecha:''};
+						//SE REFRESCA LA PAG CON EL NUEVO CLIENTE
+						var url= 'comercializacion/cliente/search';
+
+						axios.post(url,{
+                            cliente:this.searchCliente,
+                            page:this.pagination.current_page
+                        }).then(response=>{
+                        	this.showAlerts(response.data.informacion);
+							this.clientes=response.data.resultados.data;
+							this.pagination=response.data.pagination;
+                        }).catch(error=>{
+                        });
+
+
+						 }).catch(error=>{});
+
 						this.nuevoCliente={num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',rfc:'',domicilio_fiscal:''};
-						//llamar la busqueda
-						this.search();
-
-
 				},
-				showDelegaciones:function(){
+				showCliente: function(id) {
+					var url= 'comercializacion/cliente/show';
+						axios.post(url,{
+                            id:id
+                        }).then(response=>{
+                        	this.showAlerts(response.data.informacion);
+							this.mostrarCliente=response.data.resultados;
+							$('#verCliente').modal('show');
+                        }).catch(error=>{
+                        });
+				},
+				//editar Cliente
+				editaCliente: function(id){
 					var url= 'comercializacion/delegaciones/show';
 					axios.post(url).then(response=>{
-											this.delegaciones=response.data
-											}).catch(error=>{
-											});
-				},
-				showGiros:function(){
+							this.delegaciones=response.data
+							}).catch(error=>{});
 					var url= 'comercializacion/giros/show';
 					axios.post(url).then(response=>{
-											this.giros=response.data
-											}).catch(error=>{
-											});
-				},
+							this.giros=response.data
+							}).catch(error=>{});
 
+					var urlcliente= 'comercializacion/cliente/show';
+						axios.post(urlcliente,{
+                            id:id
+                        }).then(response=>{
+                        	this.showAlerts(response.data.informacion);
+							this.editarCliente=response.data.resultados;
+							$('#editarCliente').modal('show');
+                        }).catch(error=>{
+                        });
+					//	$('#editarCliente').modal('show');
+				},
+				//actualizar Cliente
 				updateCliente:function(){
 					var url= 'comercializacion/cliente/actualizar';
 					axios.post(url,{
@@ -500,6 +452,81 @@ resultado.innerText =  "Formato: " + valido;
 												$('#editarCliente').modal('hide');
 												this.editarCliente={};
 												this.search();
+											}).catch(error=>{
+											});
+				},
+				addServicio:function(id){
+					var url= 'comercializacion/delegaciones/show';
+					axios.post(url).then(response=>{
+							this.delegaciones=response.data
+							}).catch(error=>{});
+					var url= 'comercializacion/giros/show';
+					axios.post(url).then(response=>{
+							this.giros=response.data
+							}).catch(error=>{});
+
+					this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
+					this.nuevoServicio.id_cliente=id;
+					$('#agregarServicio').modal('show');
+				},
+				storeServicio:function(){
+
+					if(this.nuevoServicio.nombre_comercial=="" || this.nuevoServicio.domicilio=="" || this.nuevoServicio.municipio=="" || this.nuevoServicio.giro==""  || this.nuevoServicio.id_delegacion=="" || this.nuevoServicio.fecha_contratacion=="" )
+										{
+											toastr.error("Todos los campos son necesarios");//mensaje flotante
+										}else{
+
+					var url= 'comercializacion/servicio/store';
+						axios.post(url,{
+                            servicio:this.nuevoServicio
+                        }).then(response=>{
+                        	this.showAlerts(response.data);
+				//$this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
+							$('#agregarServicio').modal('toggle');
+                        }).catch(error=>{
+                        });
+											}//fin del else
+				},
+				//mostrar servicio
+				showServicio:function (id) {
+					var url= 'comercializacion/servicio/show';
+						axios.post(url,{
+                            id:id
+                        }).then(response=>{
+                        	this.showAlerts(response.data.informacion);
+							this.mostrarServicio=response.data.resultados;
+							$('#verServicio').modal('show');
+                        }).catch(error=>{
+                        });
+				},
+				//ver modal de contacto y MOdalidad
+				addContacto:function(){
+					$('#agregarContacto').modal('show');
+				},
+				addElemento:function(){
+					$('#agregarElementos').modal('show');
+				},
+				editarContacto:function(id){
+					this.editContacto={};
+					var url= 'comercializacion/contacto/search';
+					this.id_contacto=id;
+					axios.post(url,{
+													contacto:this.id_contacto
+											}).then(response=>{
+												this.editContacto=response.data
+												$('#editarContacto').modal('show');
+											}).catch(error=>{
+											});
+				},
+				editarModalidad:function(id){
+					this.editModalidad={};
+					var url= 'comercializacion/modalidad/search';
+					this.id_modalidad=id;
+					axios.post(url,{
+													modalidad:this.id_modalidad
+											}).then(response=>{
+												this.editModalidad=response.data
+												$('#editarModalidad').modal('show');
 											}).catch(error=>{
 											});
 				},
@@ -544,64 +571,7 @@ resultado.innerText =  "Formato: " + valido;
 											}).catch(error=>{
 											});
 				},
-				editarContacto:function(id){
-					this.editContacto={};
-					var url= 'comercializacion/contacto/search';
-					this.id_contacto=id;
-					axios.post(url,{
-													contacto:this.id_contacto
-											}).then(response=>{
-												this.editContacto=response.data
-												$('#editarContacto').modal('show');
-											}).catch(error=>{
-											});
-
-				},
-				editarModalidad:function(id){
-					this.editModalidad={};
-					var url= 'comercializacion/modalidad/search';
-					this.id_modalidad=id;
-					axios.post(url,{
-													modalidad:this.id_modalidad
-											}).then(response=>{
-												this.editModalidad=response.data
-												$('#editarModalidad').modal('show');
-											}).catch(error=>{
-											});
-				},
-
-				addServicio:function(id){
-
-					this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
-					this.nuevoServicio.id_cliente=id;
-					$('#agregarServicio').modal('show');
-				},
-				addContacto:function(){
-					$('#agregarContacto').modal('show');
-				},
-				addElemento:function(){
-					$('#agregarElementos').modal('show');
-				},
-				storeServicio:function(){
-					if(this.nuevoServicio.nombre_comercial=="" || this.nuevoServicio.domicilio=="" || this.nuevoServicio.municipio=="" || this.nuevoServicio.giro==""  || this.nuevoServicio.id_delegacion=="" || this.nuevoServicio.fecha_contratacion=="" )
-										{
-											toastr.error("Todos los campos son necesarios");//mensaje flotante
-										}else{
-
-					var url= 'comercializacion/servicio/store';
-						axios.post(url,{
-                            servicio:this.nuevoServicio
-                        }).then(response=>{
-                        	this.showAlerts(response.data);
-				//$this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
-							$('#agregarServicio').modal('toggle');
-                        }).catch(error=>{
-                        });
-											}//fin del else
-
-
-
-				},
+				//metodos para cargar los contactos y modalidades
 				storeContacto:function(){
 					if(this.nuevoContacto.nombre=="" )
                     {
@@ -648,24 +618,8 @@ resultado.innerText =  "Formato: " + valido;
 
                       }
 				},
-
-				showCliente: function(id) {
-
-					var url= 'comercializacion/cliente/show';
-
-						axios.post(url,{
-                            id:id
-                        }).then(response=>{
-                        	this.showAlerts(response.data.informacion);
-							this.mostrarCliente=response.data.resultados;
-							$('#verCliente').modal('show');
-                        }).catch(error=>{
-                        });
-				},
 				showClienteHistorial: function(id) {
-
 					var url= 'comercializacion/cliente/servicios/show';
-
 						axios.post(url,{
                             id:id
                         }).then(response=>{
@@ -675,38 +629,7 @@ resultado.innerText =  "Formato: " + valido;
                         }).catch(error=>{
                         });
 				},
-				showServicio:function (id) {
-					var url= 'comercializacion/servicio/show';
 
-						axios.post(url,{
-                            id:id
-                        }).then(response=>{
-                        	this.showAlerts(response.data.informacion);
-							this.mostrarServicio=response.data.resultados;
-							$('#verServicio').modal('show');
-                        }).catch(error=>{
-                        });
-
-				},
-
-				editaCliente: function(id){
-					var url= 'comercializacion/cliente/show';
-
-						axios.post(url,{
-                            id:id
-                        }).then(response=>{
-                        	this.showAlerts(response.data.informacion);
-							this.editarCliente=response.data.resultados;
-							$('#editarCliente').modal('show');
-                        }).catch(error=>{
-                        });
-					//	$('#editarCliente').modal('show');
-
-				},
-				//Agregar Archivos
-				addArchivos: function(){
-					$('#agregarArchivos').modal('show');
-				},
 				//funciones base
 				verificarCampos: function(array){
 					//recorrer el array para saber si un campo es vacio
@@ -723,7 +646,8 @@ resultado.innerText =  "Formato: " + valido;
 				},
 				refreshPage: function(){
 					//pagina actual sera igual a la pagina que se quiere cambiar
-					this.pagination.current_page = page;
+					//this.pagination.current_page = page;
+					this.search(this.pagination.current_page);
 					//checar
 					//this.getKeeps(page);//genere un nuevo listado
 				},

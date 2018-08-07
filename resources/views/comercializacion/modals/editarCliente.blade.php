@@ -13,14 +13,13 @@
 				<label>Razon social</label><br>
 				<input type="text" class="form-control" v-model="editarCliente.razon_social" style="text-transform: uppercase;"><br>
 
-				<label>Domicilio fiscal</label><br>
-				<input type="text" class="form-control" v-model="editarCliente.domicilio_fiscal" style="text-transform: uppercase;"><br>
+
 
 				<label>Nombre comercial</label><br>
 				<input type="text" class="form-control" v-model="editarCliente.nombre_comercial" style="text-transform: uppercase;"><br>
 
 				<label>Giro</label><br>
-				
+
 				<select class="form-control" v-model="editarCliente.giro">
                         <option v-for="giro in giros" v-bind:value="giro.id" class="lista">
                           @{{ giro.nombre}}
@@ -34,11 +33,7 @@
                         </option>
         </select>
 
-				<label>Tipo Contrato</label><br>
-				<input type="text" class="form-control" v-model="editarCliente.tipo_contrato" style="text-transform: uppercase;"><br>
-
-				<label>Domicilio Notificacion</label><br>
-				<input type="text" class="form-control" v-model="editarCliente.domicilio_notificacion" style="text-transform: uppercase;"><br>
+				
 
 			</div>
 
