@@ -53,7 +53,7 @@
 				<!---giro-->
 				<label for="">Giro</label>
 				<select class="form-control" v-model="nuevoCliente.giro">
-                        <option v-for="giro in giros" v-bind:value="giro.nombre" class="lista">
+                        <option v-for="giro in giros" v-bind:value="giro.id" class="lista">
                           @{{ giro.nombre}}
                         </option>
         </select>

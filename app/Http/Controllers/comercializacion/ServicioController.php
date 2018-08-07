@@ -34,8 +34,9 @@ class ServicioController extends Controller
       $giros=ComercializacionServicioGiro::select('id','nombre')
       ->get();
       return $giros;
+      //return "Regreso";
     }
-    
+
     //funcion para traer las delegaciones
     public function showDelegaciones(Request $request)
     {

@@ -295,7 +295,7 @@ resultado.innerText =  "Formato: " + valido;
 			el: '#crud',
 			created: function(){
 				this.showDelegaciones();
-				//this.showGiros();
+				this.showGiros();
 			},
 
 			data:{
@@ -315,7 +315,6 @@ resultado.innerText =  "Formato: " + valido;
 				editarCliente:{},
 				mostrarClienteHistorial:[],
 				mostrarServicio:{},
-
 				tipo_contra:[{id:'1', nombre:'PRIVADA'},
 							{id:'2', nombre:'ESTATAL'},
 							{id:'2', nombre:'FEDERAL'},
@@ -325,20 +324,7 @@ resultado.innerText =  "Formato: " + valido;
 							{id:'2', nombre:'MEDIO'},
 							{id:'3', nombre:'BAJO'},
 				],
-				giros:[{id:'1', nombre:'GASOLINERAS/GASERAS'},
-											{id:'2', nombre:'AGENCIAS AUTOMOTRICES/MOTOCICLETAS'},
-											{id:'3', nombre:'BANCOS'},
-											{id:'4', nombre:'BEBIDAS/CERVECEZA/REFRESCOS/MEZCAL'},
-											{id:'5', nombre:'CENTRO COMERCIAL'},
-											{id:'6', nombre:'CLINICAS/HOSPITALES/MEDICOS/OCULISTAS'},
-											{id:'7', nombre:'CONSTRUCCION/FERRETERO/CEMENTO'},
-											{id:'8', nombre:'ESCOLTA/PARTICULAR/EVENTOS SOCIALES'},
-											{id:'9', nombre:'ESTATAL/CLINICAS HOSPITALES'},
-											{id:'10', nombre:'FABRICAS/DISTRIBUIDORAS DE MAQ. E INSUMOS'},
-											{id:'11', nombre:'FINANCIERA/CASAS EMPEÑO/CAJAS AHORRO'},
-											{id:'12', nombre:'INGENIOS/ASERRADEROS/MINAS'},
-											{id:'13', nombre:'OFICINAS/ASOCIACIONES/DESPACHOS/CONSULTORIAS'},
-			],
+				
 
 				giro:[{id:'1', nombre:'ESCOLTA'},
 				],
