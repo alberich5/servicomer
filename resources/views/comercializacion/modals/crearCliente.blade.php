@@ -15,7 +15,7 @@
 				<!---nombre comercial-->
 				<label for="registro">Nombre Comercial</label>
 				<input type="text" class="form-control" v-model="nuevoCliente.nombre_comercial" required style="text-transform: uppercase;">
-				
+
 
 				<!---fecha alta-->
 				<label for="registro">Fecha Inicial de Contratacion</label>
@@ -23,9 +23,17 @@
 				<br>
 				<!---Delegaciones-->
 				<label for="">Delegacion del Contrato</label>
-				<select class="form-control" v-model="nuevoCliente.id_delegacion">
+				<select class="form-control" v-model="nuevoCliente.id_delegacion" @change="showSub()">
 					 	<option disabled selected>SELECCIONA UNA DELEGACION</option>
                         <option v-for="de in delegaciones" v-bind:value="de.id" class="lista">
+                          @{{ de.nombre}}
+                        </option>
+        </select>
+				<!--Subdelegaciones--->
+				<label for="">Sub Delegacion</label>
+				<select class="form-control" v-model="nuevoCliente.id_delegacion">
+					 	<option disabled selected>SELECCIONA UNA DELEGACION</option>
+                        <option v-for="de in subdelegaciones" v-bind:value="de.id" class="lista">
                           @{{ de.nombre}}
                         </option>
         </select>

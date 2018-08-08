@@ -20,9 +20,20 @@
 				<label>Municipio del Servicio</label><br>
 				<td><input type="text" class="form-control" v-model="nuevoServicio.municipio" required style="text-transform: uppercase;"></td><br>
 
-				<label for="">Delegacion Sub. Delegacion Asignado</label>
-				<select class="form-control" v-model="nuevoServicio.id_delegacion">
+
+				<!---Delegaciones-->
+				<label for="">Delegacion del Contrato</label>
+				<select class="form-control" v-model="nuevoServicio.id_delegacion" @change="showSub2()">
+					 	<option disabled selected>SELECCIONA UNA DELEGACION</option>
                         <option v-for="de in delegaciones" v-bind:value="de.id" class="lista">
+                          @{{ de.nombre}}
+                        </option>
+        </select>
+				<!--Subdelegaciones--->
+				<label for="">Sub Delegacion</label>
+				<select class="form-control" v-model="nuevoServicio.id_delegacion">
+					 	<option disabled selected>SELECCIONA UNA DELEGACION</option>
+                        <option v-for="de in subdelegaciones" v-bind:value="de.id" class="lista">
                           @{{ de.nombre}}
                         </option>
         </select>

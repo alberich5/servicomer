@@ -117,6 +117,9 @@ Route::post('comercializacion/cliente/store',['uses'=> 'comercializacion\Cliente
 //Mostrar delegaciones
 Route::post('comercializacion/delegaciones/show',['uses'=> 'comercializacion\ServicioController@showDelegaciones', 'as'=> 'comercializacion.delegaciones.show']);
 
+//Mostrar subdelegaciones
+Route::post('comercializacion/subdelegaciones/show',['uses'=> 'comercializacion\ServicioController@showSubdelegaciones', 'as'=> 'comercializacion.subdelegaciones.show']);
+
 //Mostrar modalidades
 Route::post('comercializacion/modalidades/show',['uses'=> 'comercializacion\ServicioController@showModalidades', 'as'=> 'comercializacion.modalidades.show']);
 
@@ -145,6 +148,8 @@ Route::post('comercializacion/servicio/actualizarmodalidad',['uses'=> 'comercial
 Route::post('comercializacion/contacto/search',['uses'=> 'comercializacion\ServicioController@searchContacto', 'as'=> 'comercializacion.contacto.search']);
 //buscar MOdalidad
 Route::post('comercializacion/modalidad/search',['uses'=> 'comercializacion\ServicioController@searchModalidad', 'as'=> 'comercializacion.modalidad.search']);
+//buscar subdelegaciones
+Route::post('comercializacion/contacto/search',['uses'=> 'comercializacion\ServicioController@searchContacto', 'as'=> 'comercializacion.contacto.search']);
 //pruebas
 Route::get('prueba',['uses'=> 'comercializacion\ServicioController@prueba', 'as'=> 'comercializacion.servicio.store']);
 

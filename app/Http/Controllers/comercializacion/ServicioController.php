@@ -37,10 +37,22 @@ class ServicioController extends Controller
       //return "Regreso";
     }
 
-    //funcion para traer las delegaciones
+    //funcion para traer las delegaciones showSubdelegaciones
     public function showDelegaciones(Request $request)
     {
       $delegaciones=Delegacion::select('id','nombre')
+      ->where('id_sucursal_depende','=','0')
+      ->get();
+
+      return $delegaciones;
+
+    }
+
+    //funcion para traer las delegaciones showSubdelegaciones
+    public function showSubdelegaciones(Request $request)
+    {
+      $delegaciones=Delegacion::select('id','nombre')
+      ->where('id_sucursal_depende','=',$request['id'])
       ->get();
       return $delegaciones;
 
@@ -325,10 +337,12 @@ class ServicioController extends Controller
     public function prueba(Request $request)
     {
 
-      //$modalidad=ComercializacionServicioElemento::findOrFail('31');
-      //$modalidad->horario='01:00 a 08:00';
-      //$modalidad->update();
-      //dd("se guardo");
+      $delegaciones=Delegacion::select('id','nombre')
+      ->where('id_sucursal_depende','=','0')
+      ->get();
+      dd($delegaciones);
+
+
     $contactos=array(
      array(
        "id"=>1,

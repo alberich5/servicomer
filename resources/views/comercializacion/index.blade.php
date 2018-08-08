@@ -243,6 +243,7 @@
 				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
 				nuevoServicio:{id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
 				delegaciones:[],
+				subdelegaciones:[],
 				nuevoContacto:{id:'',nombre:'',tipo:'',dato:''},
 				nuevoElemento:{id:'',tipo:'',cantidad:'',tipo_turno:'',horario:''},
 				mostrarClienteHistorial:[],
@@ -369,6 +370,8 @@
 				},
 				create:function()
 				{
+					this.delegaciones=[];
+					this.subdelegaciones=[];
 					this.nuevoCliente={num_cliente:'',razon_social:'',nombre_comercial:'',fecha:'',domicilio_fiscal:''};
 					var url= 'comercializacion/delegaciones/show';
 					axios.post(url).then(response=>{
@@ -380,6 +383,22 @@
 							}).catch(error=>{});
 
 					 $('#crearCliente').modal('show');
+				},
+				showSub:function(){
+					var urlsub= 'comercializacion/subdelegaciones/show';
+					axios.post(urlsub,{
+						id:this.nuevoCliente.id_delegacion
+					}).then(response=>{
+							this.subdelegaciones=response.data
+							}).catch(error=>{});
+				},
+				showSub2:function(){
+					var urlsub= 'comercializacion/subdelegaciones/show';
+					axios.post(urlsub,{
+						id:this.nuevoServicio.id_delegacion
+					}).then(response=>{
+							this.subdelegaciones=response.data
+							}).catch(error=>{});
 				},
 				store:function(){
 					var url= 'comercializacion/cliente/store';
