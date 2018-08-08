@@ -40,7 +40,7 @@ class ClienteController extends Controller
             $clientes=ComercializacionCliente::where('razon_social','like','%'.strtoupper($request['cliente']['razon_social']).'%')
             ->where('nombre_comercial','like','%'.strtoupper($request['cliente']['nombre_comercial']).'%')
             ->whereDate('fecha_alta','=',$request['cliente']['fecha'])
-            ->select('id','razon_social','estatus')
+            ->select('id','razon_social','estatus','fecha_alta')
             ->paginate(10);
             }
             else{

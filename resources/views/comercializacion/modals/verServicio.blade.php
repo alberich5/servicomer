@@ -68,6 +68,12 @@
 						</td>
 						</tr>
 						<tr>
+						<td>Fecha Servicio</td>
+						<td>
+							<label v-text="mostrarServicio.fecha"></label>
+						</td>
+						</tr>
+						<tr>
 						<td>Estatus</td>
 						<td>
 							<span class="label label-danger" v-show="mostrarServicio.estatus==false" >INACTIVO</span>
@@ -103,7 +109,7 @@
 										</button>
 									</td>
 									<td v-text="cont.nombre"></td>
-								
+
 									<td v-text="cont.telefono"></td>
 									<td v-text="cont.correo"></td>
 									<td v-text="cont.celular"></td>

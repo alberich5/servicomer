@@ -102,18 +102,18 @@ class ServicioController extends Controller
              $servicio->fecha=$request['servicio']['fecha_contratacion'];
               $servicio->save();
 
-              $ultimoservicio = ComercializacionServicio::orderBy('id', 'desc')->first();
+
               //aqui se agrega la solicitud
               $solicitudServicio=new analisis_riesg_solicitud_servicio;
-               $solicitudServicio->id_servicio=$ultimoservicio->id;
+               $solicitudServicio->id_servicio=$servicio->id;
                $solicitudServicio->save();
 
               $contactos=$request['servicio']['contactos'];
               for ($i=0; $i < sizeof($contactos); $i++) {
                   $contacto=new ComercializacionServicioContacto;
                   $contacto->nombre=strtoupper($contactos[$i]['nombre']);
-                  $contacto->tipo=strtoupper($contactos[$i]['tipo']);
-                  $contacto->cargo=$contactos[$i]['cargo'];
+                  //$contacto->tipo=strtoupper('TIPOPRUEBA');
+                  $contacto->cargo=strtoupper($contactos[$i]['cargo']);
                   $contacto->telefono=$contactos[$i]['telefono'];
                   $contacto->correo=$contactos[$i]['correo'];
                   $contacto->celular=$contactos[$i]['celular'];
@@ -329,6 +329,40 @@ class ServicioController extends Controller
       //$modalidad->horario='01:00 a 08:00';
       //$modalidad->update();
       //dd("se guardo");
+    $contactos=array(
+     array(
+       "id"=>1,
+       "nombre"=> "ASD",
+       "tipo"=> "",
+       "telefono"=> "SDAS",
+       "correo"=> "D",
+       "celular"=> "ASD",
+       "cargo"=> "ASD"
+     )
+   );
+   $elementos=array(
+    array(
+           "id"=> 1,
+           "tipo"=> "SIN ARMA POR ELEMENTO EN UN TURNO DE 12HRS, POR 1 MES",
+           "cantidad"=> "1",
+           "tipo_turno"=> "24x24",
+           "horario"=> "",
+           "horario1"=> "08:00",
+           "horario2"=> "20:00"
+         ));
+
+
+   for ($i=0; $i < sizeof($elementos); $i++) {
+       for ($j=0; $j < $elementos[$i]['cantidad']; $j++) {
+       $horas=$elementos[$i]['horario1'].' a '.$elementos[$i]['horario2'];
+       $elemento=new ComercializacionServicioElemento;
+       $elemento->tipo_turno=strtoupper($elementos[$i]['tipo_turno']);
+       $elemento->tipo=strtoupper($elementos[$i]['tipo']);
+       $elemento->horario=$horas;
+       $elemento->id_servicio=2;
+       $elemento->save();
+       }
+   }
 
     }
 

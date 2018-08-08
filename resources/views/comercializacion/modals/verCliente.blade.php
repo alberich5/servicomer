@@ -33,7 +33,9 @@
 				<label>Domicilio fiscal:</label>
 				<label v-text="mostrarCliente.domicilio_fiscal"></label>
 				<br>
-
+				<label>Fecha Alta :</label
+				<label v-text="mostrarCliente.fecha_alta"></label>
+				<br>
 
 				<label>Estatus:</label>
 				<span class="label label-danger" v-show="mostrarCliente.estatus==false" >INACTIVO</span>

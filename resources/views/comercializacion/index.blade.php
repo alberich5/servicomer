@@ -470,8 +470,8 @@
 					$('#agregarServicio').modal('show');
 				},
 				storeServicio:function(){
-
-					if(this.nuevoServicio.nombre_comercial=="" || this.nuevoServicio.domicilio=="" || this.nuevoServicio.municipio=="" || this.nuevoServicio.giro==""  || this.nuevoServicio.id_delegacion=="" || this.nuevoServicio.fecha_contratacion=="" )
+					//	this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
+					if( this.nuevoServicio.municipio=="")
 										{
 											toastr.error("Todos los campos son necesarios");//mensaje flotante
 										}else{
@@ -486,9 +486,12 @@
                         }).catch(error=>{
                         });
 											}//fin del else
+				this.nuevoServicio={id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]};
+
 				},
 				//mostrar servicio
 				showServicio:function (id) {
+					$('#historialServicios').modal('hide');
 					var url= 'comercializacion/servicio/show';
 						axios.post(url,{
                             id:id
