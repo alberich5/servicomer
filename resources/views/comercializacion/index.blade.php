@@ -232,7 +232,7 @@
 		new Vue({
 			el: '#crud',
 			created: function(){
-
+				this.verdelegacion();
 			},
 
 			data:{
@@ -242,9 +242,12 @@
 				giros:[],
 				mostrarCliente:{razonSocial:'',domicilioFiscal:'',estatus:'',fecha:'',id:'',estado:''},
 				nuevoServicio:{id_cliente:'',nombre_comercial:'',domicilio:'',municipio:'',giro:'',riesgo:'',id_delegacion:'',fecha_contratacion:'',observacion:'',contactos:[],elementos:[]},
+				verdelegacion:[],
 				delegaciones:[],
 				subdelegaciones:[],
 				nuevoContacto:{id:'',nombre:'',tipo:'',dato:''},
+				horario1:'08:00',
+				horario2:'08:00',
 				nuevoElemento:{id:'',tipo:'',cantidad:'',tipo_turno:'',horario:''},
 				mostrarClienteHistorial:[],
 				editarCliente:{},
@@ -367,6 +370,9 @@
 							this.pagination=response.data.pagination;
                         }).catch(error=>{
                         });
+				},
+				verdelegacion:function(){
+						alert("alert");
 				},
 				create:function()
 				{

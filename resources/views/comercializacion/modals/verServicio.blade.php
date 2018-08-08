@@ -74,6 +74,12 @@
 						</td>
 						</tr>
 						<tr>
+						<td>Delegacion</td>
+						<td>
+							<label v-text="mostrarServicio.id_delegacion"></label>
+						</td>
+						</tr>
+						<tr>
 						<td>Estatus</td>
 						<td>
 							<span class="label label-danger" v-show="mostrarServicio.estatus==false" >INACTIVO</span>
