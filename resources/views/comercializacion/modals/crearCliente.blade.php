@@ -22,7 +22,7 @@
 				<input type="date" class="form-control" v-model="nuevoCliente.fecha">
 				<br>
 				<!---Delegaciones-->
-				<label for="">Delegacion del Contrato</label>
+				<label for="">Delegacion</label>
 				<select class="form-control" v-model="nuevoCliente.id_delegacion" @change="showSub()">
 					 	<option disabled selected>SELECCIONA UNA DELEGACION</option>
                         <option v-for="de in delegaciones" v-bind:value="de.id" class="lista">

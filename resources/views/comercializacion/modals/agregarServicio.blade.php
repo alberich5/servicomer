@@ -22,7 +22,7 @@
 
 
 				<!---Delegaciones-->
-				<label for="">Delegacion del Contrato</label>
+				<label for="">Delegacion</label>
 				<select class="form-control" v-model="nuevoServicio.id_delegacion" @change="showSub2()">
 					 	<option disabled selected>SELECCIONA UNA DELEGACION</option>
                         <option v-for="de in delegaciones" v-bind:value="de.id" class="lista">
